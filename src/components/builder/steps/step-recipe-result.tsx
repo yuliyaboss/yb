@@ -10,6 +10,7 @@ import { BoosterPicker } from "@/components/builder/booster-picker";
 import { ShoppingList } from "@/components/builder/shopping-list";
 import { ExportActions } from "@/components/builder/export-actions";
 import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { CtaButton } from "@/components/shared/cta-button";
 
 function StepRecipeResult() {
@@ -42,8 +43,11 @@ function StepRecipeResult() {
       <Card>
         <CardContent className="flex flex-col gap-6 p-0">
           <NutritionSummary totals={recipe.totals} />
+          <Separator />
           <BoosterPicker />
+          <Separator />
           <ShoppingList items={recipe.shoppingList} />
+          <Separator />
           <ExportActions recipe={recipe} goal={goal} />
         </CardContent>
       </Card>

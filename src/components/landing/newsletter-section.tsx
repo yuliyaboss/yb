@@ -101,7 +101,10 @@ export function NewsletterSection() {
                   />
                 )}
               />
-              <Label htmlFor="newsletter-consent" className="text-muted-foreground font-normal">
+              <Label
+                htmlFor="newsletter-consent"
+                className="flex-1 block leading-relaxed text-muted-foreground font-normal"
+              >
                 Zgadzam się na otrzymywanie wiadomości od Prime Era zgodnie z{" "}
                 <a href="/polityka-prywatnosci" className="text-forest underline underline-offset-2">
                   polityką prywatności

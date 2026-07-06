@@ -25,8 +25,11 @@ export const DEFAULT_PREFERENCES: UserPreferences = {
   dairyFree: false,
 };
 
+export type PreferenceGroup = "diet" | "allergens" | "priorities";
+
 export interface PreferenceOption {
   key: PreferenceKey;
   label: string;
   description: string;
+  group: PreferenceGroup;
 }

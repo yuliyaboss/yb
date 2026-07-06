@@ -104,7 +104,10 @@ function StepEmailCapture() {
                     />
                   )}
                 />
-                <Label htmlFor="builder-consent" className="text-muted-foreground font-normal">
+                <Label
+                  htmlFor="builder-consent"
+                  className="flex-1 block leading-relaxed text-muted-foreground font-normal"
+                >
                   Zgadzam się na przesłanie przepisu na podany adres e-mail zgodnie z{" "}
                   <a href="/polityka-prywatnosci" className="text-forest underline underline-offset-2">
                     polityką prywatności

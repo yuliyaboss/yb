@@ -3,12 +3,20 @@
 import { motion } from "framer-motion";
 import { ChevronLeft } from "lucide-react";
 
-import { PREFERENCE_OPTIONS } from "@/lib/data/preferences";
+import { PREFERENCE_OPTIONS, PREFERENCE_GROUP_LABELS } from "@/lib/data/preferences";
+import type { PreferenceGroup } from "@/types/preferences";
 import { PreferenceToggle } from "@/components/builder/preference-toggle";
 import { useBuilderStore } from "@/hooks/use-builder-store";
 import { useAnalytics } from "@/hooks/use-analytics";
 import { Button } from "@/components/ui/button";
 import { CtaButton } from "@/components/shared/cta-button";
+
+const GROUP_ORDER: PreferenceGroup[] = ["diet", "allergens", "priorities"];
+const GROUP_GRID_CLASS: Record<PreferenceGroup, string> = {
+  diet: "sm:grid-cols-2",
+  allergens: "sm:grid-cols-3",
+  priorities: "sm:grid-cols-2",
+};
 
 function StepPreferences() {
   const preferences = useBuilderStore((state) => state.preferences);
@@ -35,14 +43,23 @@ function StepPreferences() {
         </p>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        {PREFERENCE_OPTIONS.map((option) => (
-          <PreferenceToggle
-            key={option.key}
-            option={option}
-            checked={preferences[option.key]}
-            onCheckedChange={() => togglePreference(option.key)}
-          />
+      <div className="flex flex-col gap-6">
+        {GROUP_ORDER.map((group) => (
+          <div key={group} className="flex flex-col gap-3">
+            <span className="text-muted-foreground text-xs font-semibold tracking-[0.15em] uppercase">
+              {PREFERENCE_GROUP_LABELS[group]}
+            </span>
+            <div className={`grid gap-3 ${GROUP_GRID_CLASS[group]}`}>
+              {PREFERENCE_OPTIONS.filter((option) => option.group === group).map((option) => (
+                <PreferenceToggle
+                  key={option.key}
+                  option={option}
+                  checked={preferences[option.key]}
+                  onCheckedChange={() => togglePreference(option.key)}
+                />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
 

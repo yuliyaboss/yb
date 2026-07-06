@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { BuilderWizard } from "@/components/builder/builder-wizard";
 import { SiteHeader } from "@/components/landing/site-header";
+import { AmbientBackground } from "@/components/shared/ambient-background";
 import { getGoalBySlug } from "@/lib/data/goals";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default async function BuilderPage({ searchParams }: BuilderPageProps) {
 
   return (
     <>
+      <AmbientBackground />
       <SiteHeader />
       <main className="flex-1">
         <BuilderWizard preselectedGoalId={preselectedGoal?.id ?? null} />

@@ -27,7 +27,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full">
-      <div className="glass-panel mx-auto mt-3 flex max-w-6xl items-center justify-between rounded-full px-5 py-3 sm:px-6">
+      <div className="glass-panel bg-card/95 mx-auto mt-3 flex max-w-6xl items-center justify-between rounded-full px-5 py-3 shadow-sm sm:px-6">
         <Logo />
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => (

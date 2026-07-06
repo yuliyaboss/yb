@@ -46,10 +46,10 @@
   --color-sand-dark: oklch(0.82 0.05 80);
   --color-cream: oklch(0.985 0.004 90);
 
-  --glass-bg: oklch(1 0 0 / 0.55);
-  --glass-border: oklch(1 0 0 / 0.4);
-  --glass-bg-dark: oklch(0.24 0.02 165 / 0.45);
-  --glass-border-dark: oklch(1 0 0 / 0.08);
+  --glass-bg: oklch(1 0 0 / 0.72);
+  --glass-border: oklch(1 0 0 / 0.5);
+  --glass-bg-dark: oklch(0.24 0.02 165 / 0.65);
+  --glass-border-dark: oklch(1 0 0 / 0.1);
 }
 
 .dark {
