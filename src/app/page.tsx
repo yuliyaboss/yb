@@ -7,7 +7,6 @@ import { GoalsPreviewSection } from "@/components/landing/goals-preview-section"
 import { WhyPrimeEraSection } from "@/components/landing/why-prime-era-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { FaqSection } from "@/components/landing/faq-section";
-import { InstagramSection } from "@/components/landing/instagram-section";
 import { NewsletterSection } from "@/components/landing/newsletter-section";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { siteConfig } from "@/config/site";
@@ -29,7 +28,6 @@ export default function HomePage() {
         <WhyPrimeEraSection />
         <TestimonialsSection />
         <FaqSection />
-        <InstagramSection />
         <NewsletterSection />
       </main>
       <SiteFooter />

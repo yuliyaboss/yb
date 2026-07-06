@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Camera } from "lucide-react";
 
 import { Logo } from "@/components/shared/logo";
 import { Separator } from "@/components/ui/separator";
@@ -38,15 +37,6 @@ export function SiteFooter() {
             <p className="text-muted-foreground text-sm">
               {siteConfig.description}
             </p>
-            <Link
-              href={siteConfig.links.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-forest inline-flex w-fit items-center gap-2 text-sm transition-colors"
-            >
-              <Camera className="size-4" />
-              @primeera
-            </Link>
           </div>
 
           <div className="grid grid-cols-2 gap-10 sm:gap-16">

@@ -14,9 +14,6 @@ export const siteConfig = {
     "koktajl na odporność",
     "prime era",
   ],
-  links: {
-    instagram: "https://instagram.com/primeera",
-  },
   contactEmail: "zen.julienne@gmail.com",
 } as const;
 

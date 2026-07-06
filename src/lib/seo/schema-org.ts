@@ -9,7 +9,6 @@ export function buildOrganizationSchema() {
     name: siteConfig.name,
     url: siteConfig.url,
     logo: `${siteConfig.url}/opengraph-image`,
-    sameAs: [siteConfig.links.instagram],
     description: siteConfig.description,
   };
 }
