@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Czego potrzebuje dziś Twoje ciało?",
   description:
     "Prime Era to inteligentny kreator smoothie. Wybierz swój cel, a nasz silnik rekomendacji dobierze składniki, wyjaśni każdy wybór i przygotuje Twoją listę zakupów.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://primeera.pl",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://yb-rust.vercel.app",
   locale: "pl_PL",
   keywords: [
     "smoothie",
@@ -17,7 +17,7 @@ export const siteConfig = {
   links: {
     instagram: "https://instagram.com/primeera",
   },
-  contactEmail: "hello@primeera.pl",
+  contactEmail: "zen.julienne@gmail.com",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

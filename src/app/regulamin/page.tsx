@@ -54,7 +54,7 @@ export default function TermsPage() {
               <h2 className="font-display mb-2 text-xl font-medium">4. Własność intelektualna</h2>
               <p>
                 Zawartość serwisu, w tym logika rekomendacji, treści i design, stanowi własność{" "}
-                {siteConfig.name} i podlega ochronie prawnoautorskiej. Wygenerowany przepis możesz
+                Yuliya Busko i podlega ochronie prawnoautorskiej. Wygenerowany przepis możesz
                 swobodnie wykorzystywać do użytku prywatnego.
               </p>
             </section>

@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
               <h2 className="font-display mb-2 text-xl font-medium">1. Administrator danych</h2>
               <p>
                 Administratorem danych osobowych zbieranych w serwisie {siteConfig.name} jest
-                operator serwisu, z którym można skontaktować się pod adresem{" "}
+                Yuliya Busko, z którą można skontaktować się pod adresem{" "}
                 <a href={`mailto:${siteConfig.contactEmail}`} className="text-forest underline">
                   {siteConfig.contactEmail}
                 </a>
