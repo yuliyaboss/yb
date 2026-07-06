@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
 
 import type { ShoppingListItem } from "@/types/recipe";
@@ -27,20 +28,34 @@ function ShoppingList({ items }: ShoppingListProps) {
             <button
               type="button"
               onClick={() => toggle(item.ingredientId)}
-              className="flex w-full items-center gap-3 text-left"
+              className="group flex w-full items-center gap-3 text-left"
               aria-pressed={item.checked}
             >
-              <span
+              <motion.span
+                animate={{ scale: item.checked ? [1, 1.15, 1] : 1 }}
+                transition={{ duration: 0.25 }}
                 className={cn(
                   "border-border flex size-5 shrink-0 items-center justify-center rounded-md border transition-colors",
+                  "group-hover:border-forest",
                   item.checked && "bg-primary border-primary text-primary-foreground",
                 )}
               >
-                {item.checked && <Check className="size-3.5" />}
-              </span>
+                <AnimatePresence>
+                  {item.checked && (
+                    <motion.span
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                    >
+                      <Check className="size-3.5" />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.span>
               <span
                 className={cn(
-                  "text-sm",
+                  "text-sm transition-colors",
                   item.checked && "text-muted-foreground line-through",
                 )}
               >

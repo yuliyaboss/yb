@@ -23,7 +23,11 @@ function BuilderProgress({ step }: { step: BuilderStep }) {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-col gap-3">
-      <Progress value={stepProgress(step)} />
+      <Progress
+        value={stepProgress(step)}
+        aria-label="Postęp w kreatorze smoothie"
+        aria-valuetext={`Krok: ${VISIBLE_STEPS[activeIndex]?.label ?? ""}`}
+      />
       <div className="flex justify-between">
         {VISIBLE_STEPS.map((item, index) => (
           <span

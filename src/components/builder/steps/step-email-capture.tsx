@@ -49,26 +49,44 @@ function StepEmailCapture() {
       <GlassPanel className="bg-card/90 flex flex-col gap-6 p-8 text-center">
         {emailSubmitted ? (
           <div className="flex flex-col items-center gap-4">
-            <CheckCircle2 className="text-forest size-10" />
-            <div className="flex flex-col gap-1.5">
-              <h2 className="font-display text-2xl font-medium">Gotowe!</h2>
+            <motion.div
+              initial={{ scale: 0, rotate: -20 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+              className="bg-primary/10 flex size-16 items-center justify-center rounded-full"
+            >
+              <CheckCircle2 className="text-forest size-8" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.35 }}
+              className="flex flex-col gap-1.5"
+            >
+              <h1 className="font-display text-2xl font-medium">Gotowe!</h1>
               <p className="text-muted-foreground text-sm">
                 Wysłaliśmy Twój przepis na e-mail. Sprawdź skrzynkę odbiorczą.
               </p>
-            </div>
-            <CtaButton
-              onClick={() => {
-                reset();
-              }}
-              showIcon={false}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.35 }}
             >
-              Stwórz kolejny koktajl
-            </CtaButton>
+              <CtaButton
+                onClick={() => {
+                  reset();
+                }}
+                showIcon={false}
+              >
+                Stwórz kolejny koktajl
+              </CtaButton>
+            </motion.div>
           </div>
         ) : (
           <>
             <div className="flex flex-col gap-1.5">
-              <h2 className="font-display text-2xl font-medium">Zapisz swój przepis</h2>
+              <h1 className="font-display text-2xl font-medium">Zapisz swój przepis</h1>
               <p className="text-muted-foreground text-sm">
                 Wyślemy Ci go na e-mail razem z listą zakupów, żebyś nie musiał/a niczego zapamiętywać.
               </p>

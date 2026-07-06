@@ -29,10 +29,10 @@ export function InstagramSection() {
             href={siteConfig.links.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className={`group relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br ${gradient}`}
+            className={`group relative aspect-square overflow-hidden rounded-2xl bg-gradient-to-br transition-transform duration-300 hover:scale-[1.03] ${gradient}`}
             aria-label={`Zobacz post ${index + 1} na Instagramie Prime Era`}
           >
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-opacity duration-300 group-hover:bg-black/10 group-hover:opacity-100">
               <Camera className="size-6 text-white" />
             </div>
           </Link>

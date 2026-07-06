@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 import { Plus, X } from "lucide-react";
 
 import { useBuilderStore } from "@/hooks/use-builder-store";
@@ -50,20 +51,26 @@ function BoosterPicker() {
         {suggestions.map((booster) => {
           const active = activeBoosterIds.has(booster.id);
           return (
-            <button
+            <motion.button
               key={booster.id}
               type="button"
               onClick={() => handleToggle(booster.id)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               className="focus-visible:ring-ring rounded-full outline-none focus-visible:ring-2"
             >
               <Badge
                 variant={active ? "default" : "outline"}
-                className={cn("cursor-pointer gap-1 py-1.5 pr-3 pl-2.5 text-xs", active && "pr-2.5")}
+                className={cn(
+                  "cursor-pointer gap-1 py-1.5 pr-3 pl-2.5 text-xs transition-colors",
+                  active && "pr-2.5",
+                  !active && "hover:border-forest hover:text-forest",
+                )}
               >
                 {active ? <X className="size-3" /> : <Plus className="size-3" />}
                 {booster.name}
               </Badge>
-            </button>
+            </motion.button>
           );
         })}
       </div>

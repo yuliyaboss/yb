@@ -5,6 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Mail, CheckCircle2 } from "lucide-react";
+import { toast } from "sonner";
 
 import { SectionHeading } from "@/components/shared/section-heading";
 import { GlassPanel } from "@/components/shared/glass-panel";
@@ -33,14 +34,17 @@ export function NewsletterSection() {
 
   async function onSubmit(data: NewsletterInput) {
     track("email_submit", { goalId: null });
-    const response = await fetch("/api/email/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...data, source: "newsletter" }),
-    });
-    if (response.ok) {
+    try {
+      const response = await fetch("/api/email/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, source: "newsletter" }),
+      });
+      if (!response.ok) throw new Error("subscribe_failed");
       track("email_success", { goalId: null });
       setSubmitted(true);
+    } catch {
+      toast.error("Nie udało się zapisać adresu e-mail. Spróbuj ponownie.");
     }
   }
 

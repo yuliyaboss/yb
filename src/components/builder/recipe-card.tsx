@@ -61,7 +61,7 @@ function RecipeCard({ recipe, goal }: RecipeCardProps) {
           <span className="text-xs font-semibold tracking-[0.15em] uppercase opacity-80">
             Twój koktajl
           </span>
-          <h2 className="font-display text-2xl font-medium">{goal.name}</h2>
+          <h1 className="font-display text-2xl font-medium">{goal.name}</h1>
         </div>
       </motion.div>
 

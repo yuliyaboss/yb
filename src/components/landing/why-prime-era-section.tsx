@@ -42,8 +42,8 @@ export function WhyPrimeEraSection() {
       <div className="mt-16 grid gap-8 sm:grid-cols-2">
         {REASONS.map((reason, index) => (
           <AnimatedReveal key={reason.title} delay={index * 0.08}>
-            <div className="flex gap-4">
-              <div className="bg-primary/10 text-forest flex size-12 shrink-0 items-center justify-center rounded-2xl">
+            <div className="group flex gap-4">
+              <div className="bg-primary/10 text-forest flex size-12 shrink-0 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-110 group-hover:bg-primary/15">
                 <reason.icon className="size-5" />
               </div>
               <div className="flex flex-col gap-1.5">

@@ -90,8 +90,8 @@ export default async function GoalPage({ params }: GoalPageProps) {
               const CategoryIcon = resolveCategoryIcon(ingredient.category);
               return (
                 <AnimatedReveal key={ingredient.id} delay={(index % 6) * 0.05}>
-                  <div className="border-border/60 bg-card flex h-full flex-col gap-3 rounded-2xl border p-5">
-                    <div className="bg-primary/10 text-forest flex size-10 items-center justify-center rounded-xl">
+                  <div className="group border-border/60 bg-card flex h-full flex-col gap-3 rounded-2xl border p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
+                    <div className="bg-primary/10 text-forest flex size-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110">
                       <CategoryIcon className="size-4.5" />
                     </div>
                     <span className="font-medium">{ingredient.name}</span>

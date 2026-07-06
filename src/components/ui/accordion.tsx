@@ -33,7 +33,8 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex flex-1 items-center justify-between gap-4 py-5 text-left font-display text-lg font-medium outline-none",
+          "group flex flex-1 items-center justify-between gap-4 py-5 text-left font-display text-lg font-medium outline-none transition-colors",
+          "hover:text-forest",
           "[&[data-state=open]>svg]:rotate-180",
           "focus-visible:ring-2 focus-visible:ring-ring rounded-md",
           className,
@@ -41,7 +42,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon className="text-muted-foreground size-5 shrink-0 transition-transform duration-300" />
+        <ChevronDownIcon className="text-muted-foreground group-hover:text-forest size-5 shrink-0 transition-transform duration-300" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );

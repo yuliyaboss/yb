@@ -38,11 +38,11 @@ export function HowItWorksSection() {
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {STEPS.map((step, index) => (
           <AnimatedReveal key={step.title} delay={index * 0.08}>
-            <div className="border-border/60 bg-card relative flex h-full flex-col gap-4 rounded-2xl border p-6">
+            <div className="group border-border/60 bg-card relative flex h-full flex-col gap-4 rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg">
               <span className="font-display text-muted-foreground/50 absolute top-4 right-5 text-4xl font-medium">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <div className="bg-primary/10 text-forest flex size-11 items-center justify-center rounded-2xl">
+              <div className="bg-primary/10 text-forest flex size-11 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110">
                 <step.icon className="size-5" />
               </div>
               <div className="flex flex-col gap-1.5">
