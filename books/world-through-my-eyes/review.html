@@ -1,0 +1,2383 @@
+<title>The World Through My Eyes</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:#FAF8F3; --surface:#FFFFFF; --surface-2:#F2EEE5; --sunk:#F6F2E9;
+  --ink:#191712; --ink-2:#5E5749; --ink-3:#8E8574;
+  --rule:#E3DDCF; --rule-2:#D3CBB8;
+  --accent:#BE5F2A; --accent-ink:#8F4519; --accent-soft:#F7E6D8;
+  --easy:#3C7550; --easy-soft:#E4EFE6;
+  --medium:#A5761C; --medium-soft:#F6EBD5;
+  --hard:#9E4330; --hard-soft:#F7E3DC;
+  --shadow:0 1px 2px rgba(30,22,10,.05), 0 8px 24px -18px rgba(30,22,10,.35);
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:#141310; --surface:#1C1A16; --surface-2:#24211B; --sunk:#1F1D18;
+    --ink:#F1ECE1; --ink-2:#B5AC9B; --ink-3:#867E6F;
+    --rule:#332F27; --rule-2:#433D33;
+    --accent:#E08A4E; --accent-ink:#F0A871; --accent-soft:#37271B;
+    --easy:#79B892; --easy-soft:#1E2C23;
+    --medium:#DDB264; --medium-soft:#302719;
+    --hard:#E08F78; --hard-soft:#33211C;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"] {
+  --paper:#141310; --surface:#1C1A16; --surface-2:#24211B; --sunk:#1F1D18;
+  --ink:#F1ECE1; --ink-2:#B5AC9B; --ink-3:#867E6F;
+  --rule:#332F27; --rule-2:#433D33;
+  --accent:#E08A4E; --accent-ink:#F0A871; --accent-soft:#37271B;
+  --easy:#79B892; --easy-soft:#1E2C23;
+  --medium:#DDB264; --medium-soft:#302719;
+  --hard:#E08F78; --hard-soft:#33211C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.8);
+}
+* { box-sizing:border-box; }
+body {
+  background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap { max-width:1180px; margin:0 auto; padding-inline:20px; padding-block:0 96px; }
+h1,h2,h3,h4 { font-family:var(--display); font-weight:600; text-wrap:balance; margin:0; line-height:1.15; }
+a { color:var(--accent-ink); }
+::selection { background:var(--accent-soft); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:3px; }
+
+/* ---------- masthead ---------- */
+.mast { padding-block:56px 32px; border-bottom:1px solid var(--rule); }
+.kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:18px; }
+.mast h1 { font-size:clamp(38px,6.4vw,68px); font-weight:600; letter-spacing:-.02em; }
+.mast .sub { font-family:var(--display); font-size:clamp(17px,2.3vw,22px);
+  color:var(--ink-2); margin-top:10px; font-style:italic; }
+.specs { display:flex; flex-wrap:wrap; gap:0 34px; margin-top:26px;
+  font-size:13.5px; color:var(--ink-2); }
+.specs div { display:flex; gap:8px; align-items:baseline; }
+.specs b { font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:500; }
+
+/* ---------- status banner ---------- */
+.status { margin-top:30px; padding:18px 22px; border-radius:4px;
+  background:var(--accent-soft); border-left:3px solid var(--accent); }
+.status p { margin:0; font-size:14.5px; color:var(--ink); }
+.status p + p { margin-top:8px; color:var(--ink-2); }
+
+/* ---------- tabs ---------- */
+.tabs { position:sticky; top:0; z-index:20; background:var(--paper);
+  border-bottom:1px solid var(--rule); display:flex; gap:2px;
+  margin-top:0; padding-top:10px; overflow-x:auto; }
+.tab { appearance:none; border:0; background:none; cursor:pointer;
+  font-family:var(--body); font-size:14px; font-weight:500; color:var(--ink-3);
+  padding:12px 16px; border-bottom:2px solid transparent; white-space:nowrap; }
+.tab:hover { color:var(--ink); }
+.tab[aria-selected="true"] { color:var(--ink); border-bottom-color:var(--accent); }
+
+/* ---------- pacing strip ---------- */
+.pacing { margin:40px 0 8px; }
+.pacing h4 { font-size:20px; margin-bottom:4px; }
+.pacing .note { font-size:13.5px; color:var(--ink-2); max-width:66ch; margin:0 0 18px; }
+.strip { display:flex; align-items:flex-end; gap:3px; flex-wrap:wrap; }
+.cell { flex:1 1 14px; min-width:14px; height:46px; border-radius:2px;
+  display:flex; align-items:flex-end; justify-content:center;
+  text-decoration:none; transition:transform .12s ease; position:relative; }
+.cell span { font-family:var(--mono); font-size:8.5px; padding-bottom:3px;
+  color:rgba(255,255,255,.9); }
+.cell:hover { transform:translateY(-3px); }
+.cell.easy { background:var(--easy); height:30px; }
+.cell.medium { background:var(--medium); height:40px; }
+.cell.challenging { background:var(--hard); height:54px; }
+.sect-gap { flex:0 0 12px; }
+.legend { display:flex; gap:20px; flex-wrap:wrap; margin-top:16px;
+  font-size:12.5px; color:var(--ink-2); }
+.legend i { display:inline-block; width:10px; height:10px; border-radius:2px;
+  margin-right:7px; vertical-align:baseline; }
+
+/* ---------- filters ---------- */
+.filters { display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  margin:34px 0 8px; padding-block:14px; border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule); }
+.flabel { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-3); margin-right:6px; }
+.fbtn { appearance:none; cursor:pointer; font-family:var(--body); font-size:13px;
+  background:var(--surface); color:var(--ink-2); border:1px solid var(--rule-2);
+  border-radius:100px; padding:5px 13px; display:inline-flex; gap:7px; align-items:center; }
+.fbtn em { font-family:var(--mono); font-style:normal; font-size:10.5px; color:var(--ink-3); }
+.fbtn:hover { border-color:var(--ink-3); color:var(--ink); }
+.fbtn[aria-pressed="true"] { background:var(--ink); color:var(--paper); border-color:var(--ink); }
+.fbtn[aria-pressed="true"] em { color:var(--paper); opacity:.6; }
+
+/* ---------- sections ---------- */
+.sect { margin-top:64px; }
+.sect-head { border-top:2px solid var(--ink); padding-top:20px; margin-bottom:12px; }
+.sect-eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent-ink); margin-bottom:10px; }
+.sect-head h2 { font-size:clamp(26px,3.6vw,36px); letter-spacing:-.015em; }
+.sect-blurb { margin-top:12px; max-width:70ch; color:var(--ink-2); font-size:15px; }
+.sect-blurb p { margin:0 0 10px; }
+.sect-blurb em { color:var(--ink-3); }
+
+/* ---------- page entries ---------- */
+.page-entry { display:grid; grid-template-columns:76px minmax(0,1fr); gap:0 24px;
+  padding:30px 0; border-bottom:1px solid var(--rule); scroll-margin-top:70px; }
+.page-entry:last-child { border-bottom:0; }
+.pnum span { font-family:var(--display); font-size:40px; font-weight:600;
+  color:var(--rule-2); font-variant-numeric:tabular-nums; line-height:1; }
+.pbody header { display:flex; flex-wrap:wrap; gap:10px 16px;
+  align-items:baseline; justify-content:space-between; margin-bottom:12px; }
+.pbody h3 { font-size:23px; letter-spacing:-.01em; }
+.meta { display:flex; gap:6px; flex-wrap:wrap; }
+.chip { font-family:var(--mono); font-size:10.5px; letter-spacing:.07em;
+  text-transform:uppercase; padding:3px 9px; border-radius:100px;
+  background:var(--surface-2); color:var(--ink-2); white-space:nowrap; }
+.chip.tier.easy { background:var(--easy-soft); color:var(--easy); }
+.chip.tier.medium { background:var(--medium-soft); color:var(--medium); }
+.chip.tier.challenging { background:var(--hard-soft); color:var(--hard); }
+.chip.act { background:var(--accent-soft); color:var(--accent-ink); }
+.scene { margin:0 0 18px; font-size:15.5px; max-width:72ch; }
+.fields { margin:0; display:grid; gap:0; border-top:1px solid var(--rule); }
+.row { display:grid; grid-template-columns:170px minmax(0,1fr); gap:4px 20px;
+  padding:9px 0; border-bottom:1px solid var(--rule); }
+.fields dt { font-family:var(--mono); font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-3); padding-top:3px; }
+.fields dd { margin:0; font-size:14.5px; color:var(--ink-2); }
+.fields dd.builds { font-family:var(--mono); font-size:12px; line-height:1.85; color:var(--ink-3); }
+.count { display:inline-block; background:var(--surface-2); color:var(--ink-2);
+  border-radius:100px; padding:0 6px; margin-left:4px; font-size:10px; }
+.why { margin:16px 0 0; font-size:14.5px; color:var(--ink); max-width:72ch;
+  padding-left:16px; border-left:2px solid var(--accent); }
+.why span, .flag span { display:block; font-family:var(--mono); font-size:10.5px;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:5px; }
+.flag { margin:14px 0 0; font-size:14px; background:var(--sunk); border:1px solid var(--rule);
+  border-radius:4px; padding:13px 16px; max-width:72ch; color:var(--ink-2); }
+.flag span { color:var(--hard); }
+
+/* ---------- prose (bibles + summary) ---------- */
+.prose { max-width:74ch; padding-top:40px; }
+.prose.wide { max-width:100%; }
+.prose h1 { font-size:34px; margin:0 0 20px; }
+.prose h2 { font-size:27px; margin:48px 0 14px; padding-top:18px; border-top:2px solid var(--ink); letter-spacing:-.015em; }
+.prose h3 { font-size:20px; margin:34px 0 10px; }
+.prose h4 { font-size:16px; margin:24px 0 8px; font-family:var(--body); font-weight:600; }
+.prose p { margin:0 0 14px; font-size:15.5px; }
+.prose ul, .prose ol { margin:0 0 16px; padding-left:22px; font-size:15.5px; }
+.prose li { margin-bottom:7px; }
+.prose li::marker { color:var(--ink-3); }
+.prose hr { border:0; border-top:1px solid var(--rule); margin:34px 0; }
+.prose strong { font-weight:600; color:var(--ink); }
+.prose em { color:var(--ink-2); }
+.prose code { font-family:var(--mono); font-size:.86em; background:var(--surface-2);
+  padding:1px 5px; border-radius:3px; color:var(--accent-ink); }
+.prose pre { background:var(--sunk); border:1px solid var(--rule); border-radius:5px;
+  padding:16px 18px; overflow-x:auto; margin:0 0 18px; }
+.prose pre code { background:none; padding:0; color:var(--ink-2); font-size:12.5px; line-height:1.65; }
+.tablewrap, .prose table { display:block; overflow-x:auto; }
+.prose table { width:100%; border-collapse:collapse; margin:0 0 20px; font-size:14px; }
+.prose th { text-align:left; font-family:var(--mono); font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:500;
+  padding:8px 14px 8px 0; border-bottom:1px solid var(--rule-2); white-space:nowrap; }
+.prose td { padding:8px 14px 8px 0; border-bottom:1px solid var(--rule);
+  color:var(--ink-2); vertical-align:top; font-variant-numeric:tabular-nums; }
+.prose td:first-child { color:var(--ink); }
+
+.foot { margin-top:70px; padding-top:24px; border-top:1px solid var(--rule);
+  font-size:13px; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 28px; }
+
+@media (max-width:720px) {
+  .page-entry { grid-template-columns:1fr; gap:6px; }
+  .pnum span { font-size:26px; }
+  .row { grid-template-columns:1fr; padding:10px 0; }
+  .fields dt { padding-top:0; }
+  .mast { padding-block:36px 24px; }
+  .cell span { display:none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="kicker">The Little Minds Collection · Book One · Pre-production</div>
+    <h1>The World Through My Eyes</h1>
+    <p class="sub">40 Magical Coloring Pages for Curious Little Minds</p>
+    <div class="specs">
+      <div><b>Ages</b>4–7</div>
+      <div><b>Trim</b>8.5 × 11 in</div>
+      <div><b>Format</b>KDP paperback, US</div>
+      <div><b>Pages</b>40 art pages</div>
+      <div><b>Tool</b>coloring-book skill</div>
+    </div>
+    <div class="status">
+      <p><strong>Stopped for review, as requested.</strong> Character Bible, Visual Bible and the
+      complete 40-page storyboard are below. No artwork, no PDF and no cover have been produced.</p>
+      <p>Three decisions need settling before artwork begins — they are listed at the end of the
+      Visual Bible and in the chat reply.</p>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-panel="storyboard">Storyboard · 40 pages</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="characters">Character Bible</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="visual">Visual Bible</button>
+    <button class="tab" role="tab" aria-selected="false" data-panel="summary">Production Summary</button>
+  </nav>
+
+  <div id="storyboard" class="panel">
+    <div class="prose" style="padding-top:34px"><h3>The spine of the book</h3>
+<p>The five sections are not five themes. They are five stages of one journey, and the book
+only works if a child feels the pull from one to the next:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Section</th>
+<th>Stage</th>
+<th>What changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–8</td>
+<td>Ordinary Things Become Magical</td>
+<td><strong>Real world</strong></td>
+<td>the everyday starts to shimmer</td>
+</tr>
+<tr>
+<td>9–16</td>
+<td>Little Adventures</td>
+<td><strong>Imagination</strong></td>
+<td>they step inside and go somewhere</td>
+</tr>
+<tr>
+<td>17–24</td>
+<td>What If Animals Could…</td>
+<td><strong>Adventure</strong></td>
+<td>the rules of the world bend</td>
+</tr>
+<tr>
+<td>25–32</td>
+<td>Dream Worlds</td>
+<td><strong>Wonder</strong></td>
+<td>the furthest point from home</td>
+</tr>
+<tr>
+<td>33–40</td>
+<td>The World Is Full of Wonder</td>
+<td><strong>Everyday world</strong></td>
+<td>back home, seeing differently</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The device that holds Section 1 together:</strong> never split the ordinary and the magical
+across two pages. On one single page the cardboard box <em>has</em> fins and a porthole and the
+stars are already behind it. The transformation is happening, not remembered.</p>
+<p><strong>The device that closes the book:</strong> page 37 returns to the puddle from page 1. Same
+puddle, same boots, and the little sailboat is still out there on it. A child who has
+colored 36 pages in between understands exactly what that means without being told.</p>
+<p><strong>Structural note.</strong> Five of the 40 pages (16, 18, 31, 38, 39) invite the child to add
+their own drawing as well as color. They are still complete coloring pages — nothing is
+left blank that a child would be disappointed to find blank.</p></div>
+
+    <div class="pacing">
+      <h4>Difficulty pacing across the book</h4>
+      <p class="note">Bar height is the difficulty tier; gaps mark the five sections. The rule is
+      that no three consecutive pages share a tier — the shape below is how you check it.
+      This book runs 17 Easy, 16 Medium and 7 Challenging pages.</p>
+      <div class="strip"><a class="cell medium" href="#page-01" title="Page 1: THE PUDDLE THAT WAS AN OCEAN — Medium"><span>1</span></a><a class="cell medium" href="#page-02" title="Page 2: THE BOX THAT WAS A ROCKET — Medium"><span>2</span></a><a class="cell easy" href="#page-03" title="Page 3: THE BLANKET THAT WAS A CASTLE — Easy"><span>3</span></a><a class="cell easy" href="#page-04" title="Page 4: THE SOFA THAT WAS A MOUNTAIN — Easy"><span>4</span></a><a class="cell medium" href="#page-05" title="Page 5: THE STICK THAT WAS A MAGIC WAND — Medium"><span>5</span></a><a class="cell easy" href="#page-06" title="Page 6: THE LAUNDRY BASKET THAT WAS A BOAT — Easy"><span>6</span></a><a class="cell medium" href="#page-07" title="Page 7: THE TUBE THAT WAS A TELESCOPE — Medium"><span>7</span></a><a class="cell challenging" href="#page-08" title="Page 8: THE UMBRELLA THAT WAS A HOT-AIR BALLOON — Challenging"><span>8</span></a><span class="sect-gap"></span><a class="cell medium" href="#page-09" title="Page 9: THE BACKYARD EXPEDITION — Medium"><span>9</span></a><a class="cell medium" href="#page-10" title="Page 10: THE TREEHOUSE LOOKOUT — Medium"><span>10</span></a><a class="cell easy" href="#page-11" title="Page 11: CROSSING THE GREAT PUDDLE — Easy"><span>11</span></a><a class="cell medium" href="#page-12" title="Page 12: THE SANDBOX DESERT — Medium"><span>12</span></a><a class="cell easy" href="#page-13" title="Page 13: THE KITE THAT PULLED US UP — Easy"><span>13</span></a><a class="cell easy" href="#page-14" title="Page 14: CAMPFIRE UNDER THE FIRST STAR — Easy"><span>14</span></a><a class="cell medium" href="#page-15" title="Page 15: THE MIDNIGHT SNACK QUEST — Medium"><span>15</span></a><a class="cell easy" href="#page-16" title="Page 16: THE MAP WE DREW OURSELVES — Easy"><span>16</span></a><span class="sect-gap"></span><a class="cell medium" href="#page-17" title="Page 17: WHAT IF WAFFLES COULD FLY? — Medium"><span>17</span></a><a class="cell easy" href="#page-18" title="Page 18: WHAT IF MOMO COULD TALK? — Easy"><span>18</span></a><a class="cell easy" href="#page-19" title="Page 19: WHAT IF THE SNAIL WON THE RACE? — Easy"><span>19</span></a><a class="cell medium" href="#page-20" title="Page 20: WHAT IF THE COW COULD DANCE? — Medium"><span>20</span></a><a class="cell medium" href="#page-21" title="Page 21: WHAT IF THE FISH COULD CLIMB TREES? — Medium"><span>21</span></a><a class="cell easy" href="#page-22" title="Page 22: WHAT IF THE ELEPHANT NEEDED A BATH? — Easy"><span>22</span></a><a class="cell challenging" href="#page-23" title="Page 23: WHAT IF THE OWL RAN THE LIBRARY? — Challenging"><span>23</span></a><a class="cell challenging" href="#page-24" title="Page 24: WHAT IF EVERY ANIMAL CAME TO TEA? — Challenging"><span>24</span></a><span class="sect-gap"></span><a class="cell easy" href="#page-25" title="Page 25: THE BED THAT SAILED AWAY — Easy"><span>25</span></a><a class="cell medium" href="#page-26" title="Page 26: THE STAIRCASE TO THE MOON — Medium"><span>26</span></a><a class="cell challenging" href="#page-27" title="Page 27: UNDER THE QUILT SEA — Challenging"><span>27</span></a><a class="cell medium" href="#page-28" title="Page 28: THE PLANET WHERE IT RAINS FLOWERS — Medium"><span>28</span></a><a class="cell medium" href="#page-29" title="Page 29: THE CLOUD PLAYGROUND — Medium"><span>29</span></a><a class="cell easy" href="#page-30" title="Page 30: THE FOREST THAT WOKE UP — Easy"><span>30</span></a><a class="cell easy" href="#page-31" title="Page 31: THE UPSIDE-DOWN TOWN — Easy"><span>31</span></a><a class="cell challenging" href="#page-32" title="Page 32: LEO&#x27;S DREAM MACHINE — Challenging"><span>32</span></a><span class="sect-gap"></span><a class="cell easy" href="#page-33" title="Page 33: MORNING LIGHT ON THE KITCHEN FLOOR — Easy"><span>33</span></a><a class="cell easy" href="#page-34" title="Page 34: THE LONGEST SHADOWS — Easy"><span>34</span></a><a class="cell medium" href="#page-35" title="Page 35: A WHOLE WORLD IN THE GARDEN BED — Medium"><span>35</span></a><a class="cell easy" href="#page-36" title="Page 36: THE BIRD WHO SANG OUR SONG — Easy"><span>36</span></a><a class="cell medium" href="#page-37" title="Page 37: THE PUDDLE, AGAIN — Medium"><span>37</span></a><a class="cell challenging" href="#page-38" title="Page 38: FIND THE WONDER — Challenging"><span>38</span></a><a class="cell easy" href="#page-39" title="Page 39: DRAW WHAT YOU SEE — Easy"><span>39</span></a><a class="cell challenging" href="#page-40" title="Page 40: THE WORLD THROUGH MY EYES — Challenging"><span>40</span></a></div>
+      <div class="legend">
+        <span><i style="background:var(--easy)"></i>Easy · 6–9 elements</span>
+        <span><i style="background:var(--medium)"></i>Medium · 10–13</span>
+        <span><i style="background:var(--hard)"></i>Challenging · 14–18</span>
+      </div>
+    </div>
+
+    <div class="filters">
+      <span class="flabel">Section</span><button class="fbtn" data-filter-section="1"><em>1</em>ORDINARY THINGS BECOME MAGICAL</button><button class="fbtn" data-filter-section="2"><em>2</em>LITTLE ADVENTURES</button><button class="fbtn" data-filter-section="3"><em>3</em>WHAT IF ANIMALS COULD…</button><button class="fbtn" data-filter-section="4"><em>4</em>DREAM WORLDS</button><button class="fbtn" data-filter-section="5"><em>5</em>THE WORLD IS FULL OF WONDER</button>
+      <span class="flabel" style="margin-left:14px">Tier</span>
+      <button class="fbtn" data-filter-tier="Easy">Easy</button>
+      <button class="fbtn" data-filter-tier="Medium">Medium</button>
+      <button class="fbtn" data-filter-tier="Challenging">Challenging</button>
+      <button class="fbtn" id="clearf" style="margin-left:auto">Show all 40</button>
+    </div>
+
+    
+<section class="sect" data-section="1">
+  <header class="sect-head">
+    <div class="sect-eyebrow">Section 1 · pages 1–8</div>
+    <h2>ORDINARY THINGS BECOME MAGICAL</h2>
+    <div class="sect-blurb"><p><em>Pages 1–8 · the real world, beginning to shimmer</em></p></div>
+  </header>
+  
+<article class="page-entry" data-section="1" data-tier="Medium" id="page-01">
+  <div class="pnum"><span>01</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE PUDDLE THAT WAS AN OCEAN</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">11 elements</span>
+      </div>
+    </header>
+    <p class="scene">Mia stands at the edge of a rain puddle in her boots. Inside the puddle's
+outline the water is a whole sea: rolling waves, a small sailboat, a whale spouting. Leo
+crouches on the far side with one hand in the water. Waffles is already standing <em>in</em> it,
+unimpressed. Pip watches from a lamppost above.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Waffles, Pip. (Momo appears from page 2 — the full cast assembles
+across the opening.)</dd></div><div class="row"><dt>Main action</dt><dd>Mia points down into the puddle; Leo reaches in to touch the little boat.</dd></div><div class="row"><dt>Environment</dt><dd>A quiet street after rain. Pavement, a lamppost, two low rooftops behind.</dd></div><div class="row"><dt>Composition</dt><dd>The puddle is a wide horizontal oval filling the lower third, its rim on
+the ground line at y≈940. Mia stands left at scale 1.35, Leo crouches right. The lamppost
+carries the composition up to y≈300 so the page does not bottom-crowd. Sky left clear.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>The puddle interior (the biggest single area in the book), the
+sailboat's two sails, the whale's body, Mia's pinafore, both pairs of boots.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Lamppost, two rooftops, three wave lines, whale spout, Pip,
+one drifting cloud.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>scene_street</code> · <code>pond</code> (as the puddle rim) · <code>waves</code> · <code>sailboat</code> ·
+<code>whale_spout</code> · <code>lamppost</code> · <code>kid_point</code> · <code>kid_stand(pose="down")</code> · <code>dachshund</code> ·
+<code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>It is the thesis of the entire book in one image, and it is the page a
+browsing parent will see first on Amazon's Look Inside. It teaches the reader the rule —
+look again, it is more than it appears — before asking them to believe it anywhere else.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Medium" id="page-02">
+  <div class="pnum"><span>02</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE BOX THAT WAS A ROCKET</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">12 elements</span>
+      </div>
+    </header>
+    <p class="scene">A cardboard box sits in the middle of a living-room rug, and it has grown fins,
+a nose cone and a round porthole. Leo's head and both arms stick out of the top, gripping
+a drawn-on control panel. Mia stands beside it holding up a hand-drawn countdown sign.
+Momo's head and one paw emerge from a smaller box behind — her first appearance.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Leo, Mia, Momo.</dd></div><div class="row"><dt>Main action</dt><dd>Leo launches; Mia counts down.</dd></div><div class="row"><dt>Environment</dt><dd>Living room — rug, couch arm at the left edge, a window showing stars even
+though it is daytime. That window is the page's joke and its whole meaning.</dd></div><div class="row"><dt>Composition</dt><dd>Rocket-box centred, 320 px tall, its fins on the rug line at y≈930. The
+window at upper right (y 220–420) fills the middle band. Couch arm anchors the left.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Box body, the two fins, nose cone, porthole, rug, window sky.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Countdown sign, control panel dials, Momo's box, couch arm,
+three stars in the window, tape strips on the box corners.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>rug</code> · <code>couch</code> · <code>window</code> · <code>rrect</code> (box) · <code>rocket</code> (fins and cone,
+scaled) · <code>kid_stand</code> · <code>cat_sitting</code> (partial, occluded) · <code>star</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The second-best-known imagination trope in childhood, and the first
+page where a character physically climbs <em>inside</em> the transformation rather than looking
+at it. Sets up Leo as the builder.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Easy" id="page-03">
+  <div class="pnum"><span>03</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE BLANKET THAT WAS A CASTLE</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">9 elements</span>
+      </div>
+    </header>
+    <p class="scene">A blanket thrown over two chairs, and rising out of its folds: two cone-roofed
+towers with flags, an arched doorway where the blanket gaps. Mia stands in the doorway
+wearing a paper crown. Waffles lies across the entrance like a very long, very bored
+drawbridge.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Waffles, Momo (one eye and two ears visible under the blanket hem).</dd></div><div class="row"><dt>Main action</dt><dd>Mia holds the blanket-door open and looks out at the reader.</dd></div><div class="row"><dt>Environment</dt><dd>A corner of a bedroom. Floorboards, one chair leg visible at each side.</dd></div><div class="row"><dt>Composition</dt><dd>The blanket-castle is a broad triangular mass, base y≈935, apex flags at
+y≈380. Mia at centre, 260 px. Waffles horizontal across the bottom at y≈900, his length
+spanning almost half the page width — the gag needs the room.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Blanket body, two tower roofs, the arch, Mia's crown, Waffles'
+saddle patch.</dd></div><div class="row"><dt>Secondary details <span class="count">5</span></dt><dd>Two flags, chair legs, floorboard lines, Momo's ears, one
+tassel on the blanket corner.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>cushion_fort</code> · <code>castle_small</code> (towers only, upper portion) · <code>crown</code> ·
+<code>kid_stand</code> · <code>dachshund</code> · <code>cat_sitting</code> (ears only)</dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The gentlest page in Section 1 and the first Easy page — placed third
+so a child who found page 2 busy gets an immediate win. Also the page that establishes
+Waffles' running joke.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Easy" id="page-04">
+  <div class="pnum"><span>04</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE SOFA THAT WAS A MOUNTAIN</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">8 elements</span>
+      </div>
+    </header>
+    <p class="scene">Leo is halfway up the arm of the sofa, one leg braced, both arms reaching for
+the summit cushion. Behind and above him a mountain range echoes the sofa's exact
+silhouette, rising into the upper half of the page. Waffles sits at the base beside a tiny
+flag marked base camp.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Leo, Waffles, Pip (circling near the peak).</dd></div><div class="row"><dt>Main action</dt><dd>Leo climbs.</dd></div><div class="row"><dt>Environment</dt><dd>Living room becoming alpine. The rug below is the valley floor.</dd></div><div class="row"><dt>Composition</dt><dd>Sofa across the lower third, y 700–930. The mountain range behind spans
+y 300–700 and repeats the sofa's profile at larger scale — the rhyme between the two
+shapes is the whole idea and must survive to final art. Leo at the sofa arm, 250 px.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Sofa body, two cushions, three mountain faces, the rug.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Base-camp flag, Waffles, Pip, two snow lines on the peaks,
+a rope over Leo's shoulder.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>couch</code> · <code>mountain_range</code> · <code>rug</code> · <code>kid_reach</code> · <code>dachshund</code> ·
+<code>bird_side</code> · <code>wooden_sign</code> (as the base-camp flag)</dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Large simple shapes make this one of the most colorable pages in the
+book, and the visual rhyme between furniture and mountain is the clearest statement of the
+book's core idea anywhere in Section 1.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Medium" id="page-05">
+  <div class="pnum"><span>05</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE STICK THAT WAS A MAGIC WAND</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">12 elements</span>
+      </div>
+    </header>
+    <p class="scene">Mia holds a crooked garden stick aloft, and sparkles are pouring off its tip and
+drifting across the whole upper page. Beside her Waffles has found a stick of his own,
+which he is carrying proudly, and nothing whatsoever is happening at his end.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Waffles, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Mia casts; Waffles carries.</dd></div><div class="row"><dt>Environment</dt><dd>A garden — flower bed along the bottom, one round tree at the right.</dd></div><div class="row"><dt>Composition</dt><dd>Mia left of centre at 280 px, right arm raised high so the wand tip lands
+at y≈330. Sparkle trail sweeps diagonally to the upper right. Tree at right y 400–930 holds
+the tall side. Waffles bottom-left, in his own pool of empty ground.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Mia's pinafore, the tree canopy, the flower bed, Waffles' patch.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Nine sparkles of two sizes, the two sticks, three flowers,
+grass tufts, Pip on a branch.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>scene_meadow</code> · <code>garden_strip</code> · <code>tree_round</code> · <code>wand</code> · <code>sparkle</code> ·
+<code>kid_stand(pose="wave")</code> · <code>dachshund</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The book's first page of pure imagination with no supporting prop —
+nothing about the stick has physically changed. And the Waffles gag lands the difference
+between believing and not: same stick, different child.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Easy" id="page-06">
+  <div class="pnum"><span>06</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE LAUNDRY BASKET THAT WAS A BOAT</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">9 elements</span>
+      </div>
+    </header>
+    <p class="scene">Mia sits inside a laundry basket that is riding a sea of spilled washing. A sock
+is rigged as a sail on a broom-handle mast. Waffles stands at the prow like a figurehead.
+Wave lines run out across the floor in every direction.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Waffles.</dd></div><div class="row"><dt>Main action</dt><dd>Mia steers with a wooden spoon; Waffles looks out to sea.</dd></div><div class="row"><dt>Environment</dt><dd>A laundry room. Washing machine at the left, a shelf above it.</dd></div><div class="row"><dt>Composition</dt><dd>Basket centred, 300 px wide, waterline at y≈880. The mast carries to
+y≈340. Washing machine anchors the left at y 600–930, and its round door echoes the
+porthole from page 2.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Basket weave, the sock sail, washing-machine door, three large
+wave shapes.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Spoon, mast, shelf with two bottles, scattered socks, Waffles'
+collar tag, a bubble trail.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>basket</code> · <code>sock</code> · <code>waves</code> · <code>rrect</code> (machine) · <code>kid_sitting</code> ·
+<code>dachshund</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Domestic, small, and funny — an Easy page placed between two Mediums,
+and one of the few settings a coloring book never uses. It also gives Waffles his best
+single pose in Section 1.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Medium" id="page-07">
+  <div class="pnum"><span>07</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE TUBE THAT WAS A TELESCOPE</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">Night. Leo kneels on a window seat with a cardboard tube pressed to one eye,
+aimed out of the window. Through the glass: a huge moon with craters, a ringed planet, a
+scatter of stars. Momo sits on the sill in silhouette, tail curled, watching the same sky.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Leo, Momo, Mia (asleep under a blanket at the left edge, only her bob and
+one hand showing).</dd></div><div class="row"><dt>Main action</dt><dd>Leo looks; Momo looks with him.</dd></div><div class="row"><dt>Environment</dt><dd>A bedroom window at night.</dd></div><div class="row"><dt>Composition</dt><dd>The window is the dominant shape — a tall rounded rectangle from y 200 to
+y 760, which single-handedly solves the vertical span. Leo kneels below right. Momo on the
+sill at the window's lower edge, breaking the frame line so she does not read as a sticker.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Moon disc, ringed planet, window frame, Leo's tee, the cushion.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Cardboard tube, eleven stars at three sizes, window-seat
+cushion, curtain edge, Momo's stripes, Mia's blanket, one crater cluster.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>window</code> · <code>moon</code> · <code>planet_ringed</code> · <code>star_field</code> · <code>telescope</code> (barrel
+geometry, scaled to a tube) · <code>kid_stand(pose="down")</code> · <code>cat_sitting</code> · <code>bed</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The quiet page of the section, and the one that plants space so that
+Dream Worlds in Section 4 feels earned rather than arbitrary. Also the first appearance of
+night, which the book will return to four more times.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="1" data-tier="Challenging" id="page-08">
+  <div class="pnum"><span>08</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE UMBRELLA THAT WAS A HOT-AIR BALLOON</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">16 elements</span>
+      </div>
+    </header>
+    <p class="scene">Mia and Leo hang from the handle of an open umbrella, rising above the rooftops
+of their town. The umbrella has become a balloon envelope with a wicker basket below it,
+caught exactly halfway between both things. Waffles hangs from the basket rim by his teeth,
+body dangling at full absurd length. Pip flies level with them. Momo watches from a chimney
+far below.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five.</dd></div><div class="row"><dt>Main action</dt><dd>They lift off.</dd></div><div class="row"><dt>Environment</dt><dd>Sky above the town. Rooftops, chimneys and a church spire fill the lower
+quarter; clouds at three heights.</dd></div><div class="row"><dt>Composition</dt><dd>Balloon-umbrella centred at y 200–560, basket at y 560–680, Waffles
+hanging to y≈800. The town skyline runs along y 850–940, which is unusually low — this is
+the one page in the book where the composition is deliberately <em>top</em>-weighted, because the
+whole subject is leaving the ground.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Umbrella canopy in six panels, basket weave, three rooftops,
+two large clouds.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Church spire, four chimneys, Momo on one of them, Pip, three
+ropes, the umbrella's hook handle, two birds in the distance, one weather vane.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>hot_air_balloon</code> · <code>skyline</code> · <code>cloud</code> · <code>kid_stand</code> ×2 (hanging pose
+via <code>kid_reach</code> mirrored) · <code>dachshund</code> · <code>cat_sitting</code> · <code>bird_side</code> · <code>village_house</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section's climax and the hinge of the whole book — the last page
+of the real world and the first page of flight. Every character appears, which signals a
+turn. The umbrella that is also a balloon, drawn as one object refusing to be either, is
+the most sophisticated image in Section 1 and deserves the closing slot.</p>
+    
+  </div>
+</article>
+</section>
+<section class="sect" data-section="2">
+  <header class="sect-head">
+    <div class="sect-eyebrow">Section 2 · pages 9–16</div>
+    <h2>LITTLE ADVENTURES</h2>
+    <div class="sect-blurb"><p><em>Pages 9–16 · inside the imagination now, and going somewhere</em></p></div>
+  </header>
+  
+<article class="page-entry" data-section="2" data-tier="Medium" id="page-09">
+  <div class="pnum"><span>09</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE BACKYARD EXPEDITION</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">Mia leads with a hand-drawn map held open in both hands; Leo follows with a
+saucepan helmet and a backpack far too large for him. The garden around them has gone
+jungle: oversized leaves, a dense tree line, one suspiciously large flower. Waffles trots
+ahead nose-down on the trail. Pip scouts from a high branch.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Waffles, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>The expedition sets off along a winding path.</dd></div><div class="row"><dt>Environment</dt><dd>A back garden reading as jungle. A dashed path curves from the bottom
+edge into the tree line.</dd></div><div class="row"><dt>Composition</dt><dd>Path enters bottom-left, curves to a vanishing point at y≈700 centre-right.
+Forest border spans y 450–800 behind. Mia and Leo staggered in depth — Mia at 1.35, Leo at
+1.20 and slightly behind, which is how the page shows distance without perspective tricks.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Four oversized leaves, the backpack, the map, Mia's pinafore,
+the giant flower.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Saucepan helmet, dashed path, Waffles, Pip, three grass tufts,
+a butterfly, one mushroom.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>scene_meadow</code> · <code>forest_border</code> · <code>leaf</code> ×4 · <code>sunflower</code> (oversized) ·
+<code>mushroom</code> · <code>butterfly</code> · <code>kid_carry</code> · <code>kid_point</code> · <code>dachshund</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section opener has to say <em>we are going somewhere now</em>. A map, a
+path leaving the frame and a character already ahead of the others say it faster than any
+caption could.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Medium" id="page-10">
+  <div class="pnum"><span>10</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE TREEHOUSE LOOKOUT</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">12 elements</span>
+      </div>
+    </header>
+    <p class="scene">A treehouse sitting in the fork of a big tree, ladder leaning against the trunk.
+Leo leans out of the window with the cardboard tube from page 7, now a spyglass. Mia is
+halfway up the ladder. Pip perches on the roof ridge. Below, Waffles has both front paws on
+the bottom rung and no idea what to do next.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Leo, Mia, Waffles, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Climbing up to look out.</dd></div><div class="row"><dt>Environment</dt><dd>The big garden tree, ground line at y≈940, grass and two bushes.</dd></div><div class="row"><dt>Composition</dt><dd>Trunk rises at centre-left from y 940 to the canopy at y 300. The house
+sits on the branch fork at y 480–700, below the foliage, with visible plank supports — a
+structure floating inside a leaf blob is the classic failure here. The ladder leans clear of
+the trunk, never overlapping it.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Canopy, treehouse walls, roof, trunk, two bushes.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Ladder rungs, spyglass, a rope with a bucket, Pip, Waffles,
+a knothole.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>treehouse</code> · <code>tree_round</code> (canopy) · <code>kid_stand</code> · <code>kid_reach</code> ·
+<code>dachshund</code> · <code>bird_side</code> · <code>grass_tuft</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Height as a reward for effort — the first page where the characters
+work for their vantage point. The canopy also gives the book its largest single green mass,
+which is a satisfying thing to hand a child.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Easy" id="page-11">
+  <div class="pnum"><span>11</span></div>
+  <div class="pbody">
+    <header>
+      <h3>CROSSING THE GREAT PUDDLE</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">A pond with five stepping stones across it. Mia is mid-stride between stones
+three and four, arms out for balance. Waffles has decided to be the bridge instead and is
+stretched between two stones at full length, with Momo walking across his back.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Waffles, Momo, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Crossing — two different solutions to the same problem, side by side.</dd></div><div class="row"><dt>Environment</dt><dd>A pond in the meadow. Reeds at both banks, one duck.</dd></div><div class="row"><dt>Composition</dt><dd>Pond as a wide ellipse, rim on the ground line at y≈900. Stones in a
+staggered line. Mia at 1.30 centre. Waffles spans the lower right at full 1.6 length, which
+is the single clearest statement of his proportions in the book.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Pond water, five stones, the duck, Mia's dress, Waffles' patch.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Reeds both sides, ripple arcs, Momo, Pip on a reed, two lily
+pads, a dragonfly.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>pond</code> · <code>stones</code> · <code>duck</code> · <code>kid_stand</code> · <code>dachshund</code> · <code>cat_sitting</code> ·
+<code>bird_side</code> · <code>grass_tuft</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>An Easy page after two Mediums, and the funniest single image in
+Section 2. The joke also does real work: it shows Waffles solving a problem by being
+exactly what he is, which is the section's quiet argument.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Medium" id="page-12">
+  <div class="pnum"><span>12</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE SANDBOX DESERT</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">A sandbox that has become a desert. Leo digs with a spade, sand flying; Mia
+kneels beside a half-buried wooden chest with its lid just breaking the surface. A cactus
+stands at the far corner of the frame. Waffles has dug his own hole and is in it up to the
+shoulders.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Leo, Mia, Waffles.</dd></div><div class="row"><dt>Main action</dt><dd>Digging for treasure.</dd></div><div class="row"><dt>Environment</dt><dd>A sandbox, its wooden frame reading as the horizon of a small desert. Sun
+high right, two distant dunes.</dd></div><div class="row"><dt>Composition</dt><dd>The sandbox frame runs across y 780–940 and the dunes continue its line
+outward, so the box edge and the desert horizon are the same stroke. Leo standing at 1.30,
+Mia kneeling — the kneel handled as an implied pose, skirt bell plus knee bumps, never
+articulated folded legs.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Sand field, the chest, cactus, sandbox frame boards, two dunes.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Spade, bucket, flying sand clods, Waffles' hole, three sand
+ripples, sun, one lizard.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>sandbox</code> · <code>cactus</code> · <code>hill</code> ×2 (dunes) · <code>dirt_hole</code> · <code>sun</code> ·
+<code>kid_stand(pose="down")</code> · <code>kid_sitting</code> · <code>dachshund</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>A different flavour of adventure — downward instead of onward — and the
+treasure chest is the first object in the book that is genuinely mysterious. It is also the
+page where the imagined world keeps the shape of the real object most visibly.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Easy" id="page-13">
+  <div class="pnum"><span>13</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE KITE THAT PULLED US UP</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">9 elements</span>
+      </div>
+    </header>
+    <p class="scene">A big diamond kite high in the upper page, string running diagonally down to
+Mia, whose heels are just off the ground. Leo has both arms around her waist, holding on,
+also rising. Their hair blows one way; a wind swirl sweeps across the sky.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>The kite lifts them both.</dd></div><div class="row"><dt>Environment</dt><dd>Open meadow, low hill behind, tall grass bending in the wind.</dd></div><div class="row"><dt>Composition</dt><dd>Kite at upper right, y 220–400 — it holds the top of the page alone, so
+the midground hill at y 700–860 is essential to keep the connected mass reaching y≈450.
+The string is a single clean diagonal and the page's strongest line.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Kite face in four panels, the hill, both children, three tail
+bows.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Wind swirl, five grass tufts, Pip flying, kite string, two
+clouds, one dandelion seed head.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>scene_meadow</code> · <code>kite</code> · <code>wind_swirl</code> · <code>hill</code> · <code>kid_stand</code> ·
+<code>kids_holding_hands</code> (adapted) · <code>bird_side</code> · <code>grass_tuft</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Physical joy with almost nothing in it — a deliberately Easy page after
+the busy sandbox, and the moment the section's rising motion becomes literal. It also sets
+the visual key for the cloud pages in Section 4.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Easy" id="page-14">
+  <div class="pnum"><span>14</span></div>
+  <div class="pbody">
+    <header>
+      <h3>CAMPFIRE UNDER THE FIRST STAR</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">Evening. A tent behind, a ring of stones with a fire in it, two log seats. Mia
+and Leo sit toasting marshmallows on long sticks. Waffles lies full-length along one log
+like a draught excluder. Momo is a pair of eyes just outside the firelight. Pip is on the
+tent's pole flag. One single star above.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five.</dd></div><div class="row"><dt>Main action</dt><dd>Toasting marshmallows; the first star comes out.</dd></div><div class="row"><dt>Environment</dt><dd>A camp in the garden at dusk. Tree line behind at low height.</dd></div><div class="row"><dt>Composition</dt><dd>Tent at left, y 560–940. Fire at centre on the ground line. The children
+face each other across it, which gives the page its only symmetrical moment in the whole
+book. Star at upper right, alone in a lot of white space — restraint is the point.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Tent body, flame tongues, two logs, both children, the fire ring
+stones.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Two marshmallow sticks, s'more on a plate, Waffles, Momo's eyes,
+Pip, flag, three tree silhouettes.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>tent</code> · <code>campfire</code> · <code>log_seat</code> ×2 · <code>marsh_stick</code> · <code>smore</code> ·
+<code>forest_border</code> · <code>kid_sitting</code> ×2 · <code>dachshund</code> · <code>bird_side</code> · <code>star</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The book's rest stop. Section 2 has been pushing outward and upward for
+five pages; this one stops, sits down and is warm. Every book for this age needs a page
+that does nothing except feel safe, and it should arrive just before the halfway mark.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Medium" id="page-15">
+  <div class="pnum"><span>15</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE MIDNIGHT SNACK QUEST</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">A kitchen at night. Leo is on tiptoe on a chair, reaching for a biscuit tin on
+the high shelf. Mia holds the chair steady with one hand and a torch with the other, its
+beam a clean cone across the cupboards. Momo is already on the counter and has already got
+there first. Waffles waits below with total faith.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Leo, Mia, Momo, Waffles.</dd></div><div class="row"><dt>Main action</dt><dd>The reach.</dd></div><div class="row"><dt>Environment</dt><dd>Kitchen at night — counter, cupboards, shelf, window with the moon.</dd></div><div class="row"><dt>Composition</dt><dd>Cupboard run fills y 300–700 across the upper half, which is what makes
+this an indoor page that still spans. Leo's reaching hand at y≈380, the tin just above it.
+Torch beam is a long triangle, and it is the page's only diagonal.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Cupboard doors, the biscuit tin, torch beam, counter front,
+moon in the window.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Chair, four jars on the counter, Momo, Waffles, kettle,
+floor tiles, a mug.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>window</code> · <code>moon</code> · <code>bookshelf</code> (as the cupboard run) · <code>table</code> ·
+<code>teapot</code> · <code>kid_reach</code> · <code>kid_stand</code> · <code>cat_sitting</code> · <code>dachshund</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Mild transgression is delicious at five. It is also the last page of
+pure domestic reality before the animal section rewrites the rules, and the torch beam
+quietly rehearses the light-through-window motif that closes the book on page 33.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="2" data-tier="Easy" id="page-16">
+  <div class="pnum"><span>16</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE MAP WE DREW OURSELVES</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span><span class="chip act">activity</span>
+      </div>
+    </header>
+    <p class="scene">A large sheet of paper spread across the whole page, its corners weighted with
+a stone, a mug, a shoe and Momo. On the paper: a partly drawn treasure map — a coastline, a
+forest of small trees, three landmarks, a dashed route that runs for a while and then stops
+in open space with a large question mark. Mia and Leo lie on their stomachs at the bottom
+edge, drawing.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Momo.</dd></div><div class="row"><dt>Main action</dt><dd>They are drawing the map — and the child finishes it.</dd></div><div class="row"><dt>Environment</dt><dd>The map itself is the environment. Floorboards visible at the margins.</dd></div><div class="row"><dt>Composition</dt><dd>Map fills y 180–900 as a slightly rotated rectangle. The route starts at
+a compass rose bottom-left, passes three landmarks and stops at y≈420 with generous empty
+paper beyond. The children's heads and shoulders break the bottom edge of the map, which
+keeps them part of the scene rather than framing it.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Landmark drawings (mountain, tree, tower), compass rose, the
+four corner weights, the map's torn edge.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Dashed route, question mark, coastline, two pencils, Momo,
+floorboards.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>rrect</code> (map) · <code>mountain</code> · <code>tree_pine</code> · <code>castle_small</code> (small
+landmark) · <code>dotline</code> · <code>stones</code> · <code>cat_sitting</code> · <code>kid_sitting</code> ×2 · <code>star</code> (compass)</dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section's closer and the book's first invitation to add rather than
+fill in. Section 2 has been about going somewhere; it ends by handing the child the
+decision about where. The blank half of the map is the point, and it should look like
+paper, not like an unfinished page.</p>
+    
+  </div>
+</article>
+</section>
+<section class="sect" data-section="3">
+  <header class="sect-head">
+    <div class="sect-eyebrow">Section 3 · pages 17–24</div>
+    <h2>WHAT IF ANIMALS COULD…</h2>
+    <div class="sect-blurb"><p><em>Pages 17–24 · the rules of the world start to bend</em></p>
+<p>Each page in this section asks its question in the title and answers it in the picture.
+Big animal bodies mean big colorable areas, so this is the most forgiving section for the
+youngest readers even though it sits in the middle of the book.</p></div>
+  </header>
+  
+<article class="page-entry" data-section="3" data-tier="Medium" id="page-17">
+  <div class="pnum"><span>17</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF WAFFLES COULD FLY?</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">12 elements</span>
+      </div>
+    </header>
+    <p class="scene">Waffles airborne above the rooftops, with a pair of paper-plane wings taped
+along his impossible length. Ears streaming backwards. Pip flies alongside in formation,
+clearly the flight instructor. Below, Leo stands on the garden wall with both arms up,
+having just let go.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Waffles, Pip, Leo.</dd></div><div class="row"><dt>Main action</dt><dd>Waffles flies, badly and joyfully.</dd></div><div class="row"><dt>Environment</dt><dd>Above the back garden. Rooftops, treetops and a washing line below.</dd></div><div class="row"><dt>Composition</dt><dd>Waffles occupies the upper half on a shallow diagonal, y 260–500, at full
+length — the longest single shape in the book. Leo small on the wall at y 780. Washing line
+strung across the lower third gives the mid-band something to do.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Waffles' body and saddle patch, both paper wings, two rooftops,
+three hanging shirts on the line.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Tape strips, Pip, the wall, two treetops, four clouds, Leo.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>dachshund</code> · <code>paper_plane</code> (wings, scaled) · <code>bird_side</code> · <code>skyline</code> ·
+<code>cloud</code> · <code>kid_jump</code> · <code>sock</code> ×3 (washing)</dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section opens with the character a child already loves doing the
+one thing he obviously cannot. Starting with Waffles rather than a generic animal also
+keeps the cast at the centre of the section instead of letting it drift into a zoo.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Easy" id="page-18">
+  <div class="pnum"><span>18</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF MOMO COULD TALK?</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">9 elements</span><span class="chip act">activity</span>
+      </div>
+    </header>
+    <p class="scene">Momo sits square in the middle of a sunlit windowsill, facing the reader
+directly — the only front-on pose in the book. Above her, a large empty speech bubble. A
+knocked-over plant pot behind her, soil spilled, and a look of complete innocence.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Momo, Pip (outside on the window ledge, looking in).</dd></div><div class="row"><dt>Main action</dt><dd>Momo says something. The child decides what.</dd></div><div class="row"><dt>Environment</dt><dd>A windowsill, the garden visible through the glass behind.</dd></div><div class="row"><dt>Composition</dt><dd>The speech bubble is the largest object on the page, y 220–500, tail
+pointing down to Momo's head but stopping well clear of it. Momo centred at y 560–860.
+Window frame divides the background into four clean panes.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>The speech bubble interior (deliberately the biggest empty area
+in the book), Momo's body and stripes, the plant pot, four window panes.</dd></div><div class="row"><dt>Secondary details <span class="count">5</span></dt><dd>Spilled soil, plant leaves, Pip, sill edge, curtain corner.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>speech_bubble</code> · <code>cat_sitting</code> (front-view adaptation) · <code>window</code> ·
+<code>potted_plant</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The second invitation page, and the funnier one — the picture already
+tells the child exactly what Momo is about to have to explain. It needs no instruction
+text, which is why it sits here rather than anywhere a caption would be required.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Easy" id="page-19">
+  <div class="pnum"><span>19</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF THE SNAIL WON THE RACE?</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">A finish line with a ribbon stretched across it, and a snail crossing it at
+tremendous speed, shell tilted back, ribbon breaking across his face. A rabbit sleeps
+soundly under a tree a little way behind, ears flopped. A tiny crowd of a frog, a turtle
+and a duck cheers from the grass verge.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>No human cast. Waffles is the one holding the finish ribbon at one end,
+which is his only job on this page and he is taking it seriously.</dd></div><div class="row"><dt>Main action</dt><dd>The snail wins.</dd></div><div class="row"><dt>Environment</dt><dd>A meadow race track — two dashed lane lines, a tree at the right.</dd></div><div class="row"><dt>Composition</dt><dd>The finish ribbon runs across y≈760, a strong horizontal. Snail large in
+the foreground at y 700–880 — scaled far beyond life size, because the page is about how
+the snail feels. Tree and sleeping rabbit at right, y 380–900, holding the tall side.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Snail shell (a big spiral — one of the most satisfying shapes in
+the book), rabbit's body, tree canopy, the ribbon.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Frog, turtle, duck, dashed lanes, three grass tufts, Waffles,
+a small flag.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>snail</code> · <code>rabbit</code> · <code>frog</code> · <code>turtle</code> · <code>duck</code> · <code>tree_round</code> ·
+<code>dotline</code> · <code>dachshund</code> · <code>grass_tuft</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The one page in the book that leans on a story a child may already
+half-know, which makes it feel like a reward rather than a lesson. It also gives the
+section a page with no human characters at all, so the animal world stands on its own once.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Medium" id="page-20">
+  <div class="pnum"><span>20</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF THE COW COULD DANCE?</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">A farmyard mid-performance. The cow is up on her hind legs, front hooves out,
+mid-spin. Two sheep watch from the fence with visible admiration. The chicken is
+conducting. Leo drums on an upturned bucket; Mia claps.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Pip (on the barn weather vane).</dd></div><div class="row"><dt>Main action</dt><dd>The cow dances; everyone else keeps time.</dd></div><div class="row"><dt>Environment</dt><dd>Farmyard — barn, ranch fence, open ground.</dd></div><div class="row"><dt>Composition</dt><dd>Barn at left, y 360–940, the section's tallest anchor. Cow centred at
+1.35, occupying y 520–920. Fence runs right, with the sheep heads above the rail. The
+page's rhythm goes tall-barn, big-cow, low-fence, which keeps the eye moving left to right.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Cow body and patches, barn walls and roof, two sheep fleeces,
+Mia's pinafore.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Chicken, bucket drum, fence rails, weather vane, Pip, three
+music notes, one hay bale.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>scene_farm</code> · <code>barn</code> · <code>cow</code> · <code>sheep</code> ×2 · <code>chicken</code> · <code>fence_ranch</code> ·
+<code>drum</code> · <code>music_note</code> · <code>kid_stand</code> · <code>kid_sitting</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The most purely silly page in the book, and the busiest one so far in
+the section — it earns the two Easy pages that preceded it. It also brings the human cast
+back after page 19, so the section does not drift away from them.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Medium" id="page-21">
+  <div class="pnum"><span>21</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF THE FISH COULD CLIMB TREES?</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">12 elements</span>
+      </div>
+    </header>
+    <p class="scene">An apple tree growing at the edge of a pond, and three fish sitting in its
+branches quite comfortably, one with an apple. A fourth fish is halfway up the trunk,
+climbing. A turtle at the base looks up with the expression of someone who has decided not
+to ask. Mia sits on the bank with her chin in her hands, entirely accepting this.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Fish climb; Mia watches without objecting.</dd></div><div class="row"><dt>Environment</dt><dd>Pond bank with an apple tree, reeds, water at the lower left.</dd></div><div class="row"><dt>Composition</dt><dd>Tree at centre-right, trunk from y 940 to the canopy at y 330 — the fish
+in the branches are what fill the upper middle band, which no other page achieves this
+neatly. Pond at lower left. Mia seated on the bank at 1.25.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Canopy, four fish bodies, pond water, five apples, Mia's dress.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Turtle, reeds, Pip on a branch, ripple arcs, two fallen apples,
+one leaf mid-fall.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>apple_tree</code> · <code>fish</code> ×4 · <code>turtle</code> · <code>pond</code> · <code>kid_sitting</code> ·
+<code>bird_side</code> · <code>leaf</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The most genuinely surreal image in the section, delivered completely
+deadpan. Mia's calm acceptance is what makes it funny rather than strange, and that is a
+distinction worth getting right in the final art.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Easy" id="page-22">
+  <div class="pnum"><span>22</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF THE ELEPHANT NEEDED A BATH?</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">A bathroom containing, impossibly, one elephant in the bath. Water everywhere.
+The elephant's trunk is curled up over his own head, spraying. Waffles is soaked and
+delighted. A rubber duck rides the wave. The bathroom door is open and the water is heading
+for the hallway.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Waffles, Momo (on top of the cistern, as high and as dry as she can get).</dd></div><div class="row"><dt>Main action</dt><dd>The elephant washes; the bathroom loses.</dd></div><div class="row"><dt>Environment</dt><dd>A small bathroom. Tub, tiles, a towel rail, an open door.</dd></div><div class="row"><dt>Composition</dt><dd>The elephant fills the centre from y 350 to y 880 — the biggest single
+figure in the entire book. Tub across the lower third. Tiles as a few large squares, never
+a fine grid, per the region floor. Water spray arcs to y≈300.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Elephant body, ears, the bath, four large tiles, the towel.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Rubber duck, spray arcs, six water splashes, Waffles, Momo,
+soap bar with bubbles.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>elephant</code> · <code>duck</code> · <code>rrect</code> (tub, tiles, door) · <code>waves</code> (spray) ·
+<code>dachshund</code> · <code>cat_sitting</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Scale comedy — the gap between the animal and the room is the whole
+joke, and a four-year-old gets it instantly. Big simple shapes make it the easiest page to
+color in the second half of the book, which is exactly where an easy win belongs.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Challenging" id="page-23">
+  <div class="pnum"><span>23</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF THE OWL RAN THE LIBRARY?</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">15 elements</span>
+      </div>
+    </header>
+    <p class="scene">A library with a tall wall of shelves. An owl in small round spectacles sits on
+a high stool behind the desk with a rubber stamp raised. A queue of borrowers: a rabbit
+with a tower of books, a monkey hanging from the top shelf reading upside down, a tortoise
+who has clearly been in this queue for some time. Mia is at the desk with one enormous
+book. Momo is asleep in the returns basket.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Momo.</dd></div><div class="row"><dt>Main action</dt><dd>The owl stamps Mia's book.</dd></div><div class="row"><dt>Environment</dt><dd>A small library. Shelves, desk, one high window, a rug.</dd></div><div class="row"><dt>Composition</dt><dd>The shelf wall runs y 220–800 across two-thirds of the width and does all
+the vertical work. Desk across the lower right. The queue reads left to right at descending
+heights, which keeps eleven objects legible.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Shelf rows (as a few large blocks, not individual spines), the
+big book, owl's body, rug, desk front.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Spectacles, stamp, rabbit's book tower, monkey, tortoise,
+returns basket with Momo, window, a hanging sign.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>bookshelf</code> ×2 · <code>open_book</code> · <code>closed_book</code> · <code>owl</code> · <code>rabbit</code> ·
+<code>monkey</code> · <code>turtle</code> · <code>desk</code> · <code>office_chair</code> · <code>rug</code> · <code>window</code> · <code>cat_sitting</code> ·
+<code>kid_stand</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section's most detailed page, placed second-to-last where an older
+sibling in the 6–7 band will reach for it. Books in a book for children who are learning to
+read is a note worth hitting once, lightly, without saying anything about it.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="3" data-tier="Challenging" id="page-24">
+  <div class="pnum"><span>24</span></div>
+  <div class="pbody">
+    <header>
+      <h3>WHAT IF EVERY ANIMAL CAME TO TEA?</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">18 elements</span>
+      </div>
+    </header>
+    <p class="scene">A long table in the garden under bunting, and every animal in the book at it.
+The lion has the big chair at the head. The giraffe does not need a chair and is eating
+from above. The elephant is pouring, carefully. Waffles is on the table and nobody has
+noticed yet. Momo is under it. Mia and Leo sit in the middle, entirely at home.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five, plus lion, giraffe, elephant, rabbit, owl, frog, chicken.</dd></div><div class="row"><dt>Main action</dt><dd>Tea is poured; the table holds.</dd></div><div class="row"><dt>Environment</dt><dd>The garden, table running across the page, bunting strung above, tree line
+behind.</dd></div><div class="row"><dt>Composition</dt><dd>Table at y 700–820 as the horizontal spine. Guests on both sides at
+staggered heights, tallest at the ends so the eye is held inside the frame. Bunting across
+y 220–300 closes the top. The giraffe's neck is the one vertical connecting the two bands,
+which is why the giraffe has to be at centre-right.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Tablecloth, lion's mane, giraffe's patches, the teapot, eleven
+bunting triangles.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Teacups, cake stand, chairs, Waffles on the table, Momo beneath,
+Pip on the bunting line, two trees, the elephant's teapot arc.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>table</code> · <code>lion</code> · <code>giraffe</code> · <code>elephant</code> · <code>rabbit</code> · <code>owl</code> · <code>frog</code> ·
+<code>chicken</code> · <code>teapot</code> · <code>cupcake</code> · <code>kid_sitting</code> ×2 · <code>dachshund</code> · <code>cat_sitting</code> ·
+<code>bird_side</code> · <code>forest_border</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section closer has to be a party, and every character the reader
+has met since page 17 comes back for it. It is also the busiest page in the first
+three-quarters of the book — deliberately, because the next page opens the quietest section.</p>
+    
+  </div>
+</article>
+</section>
+<section class="sect" data-section="4">
+  <header class="sect-head">
+    <div class="sect-eyebrow">Section 4 · pages 25–32</div>
+    <h2>DREAM WORLDS</h2>
+    <div class="sect-blurb"><p><em>Pages 25–32 · the furthest point from home</em></p>
+<p>The book's visual register changes here. Night, floating, no ground line on four of the
+eight pages. Where earlier sections built upward from a ground, these pages are composed
+around a centre — which is what makes them feel weightless without needing to explain it.</p></div>
+  </header>
+  
+<article class="page-entry" data-section="4" data-tier="Easy" id="page-25">
+  <div class="pnum"><span>25</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE BED THAT SAILED AWAY</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">9 elements</span>
+      </div>
+    </header>
+    <p class="scene">Mia's bed, at sea. The headboard is the prow, the blanket rolls like water
+around it, and a sail has gone up on the bedpost. Mia sits upright in the middle of it,
+awake and pleased. Waffles is asleep at the foot and has noticed nothing. A big low moon
+behind.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Waffles.</dd></div><div class="row"><dt>Main action</dt><dd>The bed sails.</dd></div><div class="row"><dt>Environment</dt><dd>Open sea at night. Waves, moon, three stars. No floor, no walls.</dd></div><div class="row"><dt>Composition</dt><dd>Bed centred at y 560–860, waterline at y≈820 cutting across it. Moon large
+at upper left, y 240–480, which is the only page where a sky token is allowed to carry the
+top of the composition — with no ground line, the rule does not apply. Sail rises to y≈380
+and connects the two masses.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>The blanket, the sail, moon disc, three wave crests, headboard.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Pillow, bedpost, Waffles, stars, one flying fish, a rope.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>bed</code> · <code>kid_in_bed</code> (adapted to sitting upright) · <code>waves</code> · <code>moon</code> ·
+<code>sailboat</code> (sail rigging) · <code>dachshund</code> · <code>star</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The classic threshold image for falling asleep, and the gentlest
+possible entry into the dream section. Waffles sleeping through the whole thing is what
+keeps it from being sentimental.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Medium" id="page-26">
+  <div class="pnum"><span>26</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE STAIRCASE TO THE MOON</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">11 elements</span>
+      </div>
+    </header>
+    <p class="scene">A staircase made of stars, curving up from the bottom of the page to a moon at
+the top. Mia is a third of the way up, one hand on an invisible rail, looking back down.
+Pip is several steps ahead, waiting. The steps below her are already fading into sparkles.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>The climb.</dd></div><div class="row"><dt>Environment</dt><dd>Night sky. Nothing else — this is the emptiest page in the book and it
+should stay that way.</dd></div><div class="row"><dt>Composition</dt><dd>The staircase is an S-curve from bottom-left (y 940) to the moon at upper
+right (y 260), and it is the page's only structure. Mia at y≈650 on the curve at scale
+1.20. Roughly 45% of the art band is white.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Fourteen star-steps, the moon, Mia's nightdress.</dd></div><div class="row"><dt>Secondary details <span class="count">5</span></dt><dd>Pip, sparkles trailing below the lowest steps, two distant
+planets, a wisp of cloud, the moon's craters.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>star</code> ×14 (scaled along a path) · <code>moon</code> · <code>sparkle</code> · <code>planet_ringed</code> ·
+<code>kid_stand</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Every book for this age needs one page of pure held breath. It also
+gives the section its clearest vertical, which matters after page 25 laid everything flat.
+The stars-as-steps device is simple enough for a four-year-old to grasp and striking enough
+to be the page a parent photographs.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Challenging" id="page-27">
+  <div class="pnum"><span>27</span></div>
+  <div class="pbody">
+    <header>
+      <h3>UNDER THE QUILT SEA</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">16 elements</span>
+      </div>
+    </header>
+    <p class="scene">Underwater, except the water is a quilt — the surface above is stitched in
+patchwork squares, and the light coming through it is quilted too. Mia and Leo swim below
+in pyjamas, hair floating. An octopus offers a teacup. Fish weave past. A great open scallop
+shell sits on the seabed with a pearl in it. Momo is inside an upturned boot, dry, furious.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Momo.</dd></div><div class="row"><dt>Main action</dt><dd>Swimming down toward the shell.</dd></div><div class="row"><dt>Environment</dt><dd>Seabed. Quilted surface above, sand and small shells below.</dd></div><div class="row"><dt>Composition</dt><dd>Quilt-surface band at y 180–320 — stitched squares, big ones, four across.
+Children mid-page at y 450–700, angled downward. Shell and pearl on the seabed at y 850.
+The full column is occupied, which is why this page can carry its element count.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Six quilt squares, octopus body, the shell, both pyjama sets,
+three fish.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Pearl, bubbles, two small shells, seaweed, Momo's boot, teacup,
+a starfish, stitch-dash lines on the quilt.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>waves</code> · <code>stitch_dash</code> · <code>octopus</code> · <code>fish</code> ×3 · <code>pearl_shell</code> ·
+<code>small_shell</code> ×2 · <code>kid_stand</code> (swimming adaptation) ×2 · <code>cat_sitting</code> · <code>sock</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section's most inventive single conceit — the thing a child is
+actually lying under, turned into the thing they are swimming in. It is the page most
+likely to be chosen for the cover's back-panel preview.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Medium" id="page-28">
+  <div class="pnum"><span>28</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE PLANET WHERE IT RAINS FLOWERS</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">A small round planet with a ring, and the cast standing on its curve. Flowers
+fall from the sky instead of rain. Leo holds an upside-down umbrella already heaped with
+them. Mia catches one in her cupped hands. Waffles has flowers caught in his ears. The
+horizon curves away on both sides.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Waffles.</dd></div><div class="row"><dt>Main action</dt><dd>Catching the flower-rain.</dd></div><div class="row"><dt>Environment</dt><dd>A tiny planet. Curved ground, a ring arcing behind, two moons.</dd></div><div class="row"><dt>Composition</dt><dd>The planet's curve runs across y 820–940 and the figures stand on it
+radially — slightly tilted outward at the edges, which sells the smallness. Falling flowers
+fill y 200–800 in a scattered column, providing the mid-band. The ring arcs behind at
+y≈600.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Twelve falling flowers, the umbrella bowl, the planet's surface,
+the ring band.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Two moons, Waffles' ear-flowers, three surface craters, a
+flower already growing, Mia's cupped hands, stars.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>planet_ringed</code> · <code>flower</code> ×12 · <code>moon</code> ×2 · <code>crater_ground</code> (curved) ·
+<code>kid_stand</code> · <code>kid_carry</code> · <code>dachshund</code> · <code>star_field</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>Section 4's most cheerful page, and a necessary lift between the depth
+of page 27 and the wide-open sky of page 29. The radial standing pose is also the only
+place in the book where the characters are not upright relative to the page edge, which is
+worth doing exactly once.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Medium" id="page-29">
+  <div class="pnum"><span>29</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE CLOUD PLAYGROUND</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">13 elements</span>
+      </div>
+    </header>
+    <p class="scene">A playground built entirely on clouds. A slide runs down one cloud's edge into
+another. A swing hangs from nothing at all. Leo is airborne off the end of the slide. Mia
+swings high. Waffles bounces on a cloud like a trampoline, all four legs off. Momo sits
+primly on the smallest cloud, refusing. Pip is the only one who finds any of this normal.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five.</dd></div><div class="row"><dt>Main action</dt><dd>Play, at full volume.</dd></div><div class="row"><dt>Environment</dt><dd>Sky. Five clouds at different heights, sun upper right, distant birds.</dd></div><div class="row"><dt>Composition</dt><dd>Clouds arranged as stepping masses from lower left to upper right, filling
+y 260–900 diagonally. Leo mid-air at the centre, the page's focal point, with motion ticks
+below him. No ground line anywhere.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Five cloud bodies, the slide, the swing seat, sun.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Swing ropes, motion ticks, Waffles mid-bounce, Momo, Pip, three
+distant birds, a rainbow fragment, one dropped shoe falling.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>cloud</code> ×5 · <code>swing_set</code> (seat and ropes, frame removed) · <code>sun</code> ·
+<code>rainbow</code> · <code>kid_jump</code> · <code>kid_stand</code> · <code>dachshund</code> · <code>cat_sitting</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section needs one page of noise, and this is it — the payoff for
+page 13's kite and page 8's lift-off. Placing the whole cast in weightless play is also the
+clearest signal that the book has reached its furthest point from ordinary life.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Easy" id="page-30">
+  <div class="pnum"><span>30</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE FOREST THAT WOKE UP</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">Night in a forest where the trees have opened their eyes — not literally drawn
+eyes, but little arched fairy doors and lit windows in the trunks, each one glowing. Mia
+walks the path with a lantern. Fireflies drift. An owl watches from a branch. A toadstool
+ring sits to one side. Momo pads along behind, tail up.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Momo, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Walking quietly through, not disturbing anything.</dd></div><div class="row"><dt>Environment</dt><dd>Forest at night. Path, three big trunks, canopy above, moon through the
+branches.</dd></div><div class="row"><dt>Composition</dt><dd>Three trunks rise from y 940 clear off the top edge of the art band,
+dividing the page into vertical bands. The path runs from bottom-centre back to y≈600.
+Lantern light is a soft circle, drawn as a simple ring, no gradient.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Three trunks, canopy mass, two fairy doors, the lantern, three
+toadstools.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Seven fireflies, owl, moon fragment, path stones, Momo, Pip,
+one tree window.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>forest_border</code> · <code>tree_round</code> ×3 · <code>fairy_door</code> ×2 · <code>firefly</code> ×7 ·
+<code>mushroom</code> ×3 · <code>owl</code> · <code>moon</code> · <code>kid_stand</code> · <code>cat_sitting</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The calm before the section's finale, and the only page in the book
+that is quietly mysterious rather than funny or exciting. Children of this age like being
+slightly awed; they do not like being frightened, and the difference is entirely in the
+faces — the owl is friendly, the doors are small, nothing is hiding.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Easy" id="page-31">
+  <div class="pnum"><span>31</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE UPSIDE-DOWN TOWN</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span><span class="chip act">activity</span>
+      </div>
+    </header>
+    <p class="scene">A town reflected perfectly in still water, except the reflection is the real
+one — there are lit windows and a flying kite down there, and the town above is the quiet
+one. Mia stands on the shoreline at the exact mirror line. The left half of the page is
+drawn; the right half is a dotted mirror-image hint for the child to complete.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Looking down at a town that is looking back.</dd></div><div class="row"><dt>Environment</dt><dd>A lakeshore at dusk. Waterline across the exact centre.</dd></div><div class="row"><dt>Composition</dt><dd>Mirror axis horizontal at y≈550. Above: rooftops, a spire, a tree. Below:
+the same shapes inverted, drawn solid on the left half and dotted on the right. Mia stands
+at the axis, the only element that is not mirrored.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Four rooftops and their reflections, the spire, the tree, the
+water band.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Kite in the reflection, seven windows, Pip, three ripple lines,
+two clouds, a moon.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>symmetry_page</code> · <code>skyline</code> · <code>village_house</code> · <code>tree_round</code> · <code>kite</code> ·
+<code>waves</code> · <code>dotline</code> · <code>kid_stand</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The symmetry page, and the most conceptually elegant one in the book —
+completing the mirror is a genuine little skill for a six-year-old, and the idea that the
+reflection is the livelier world is the whole book's thesis restated one last time before
+the return home.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="4" data-tier="Challenging" id="page-32">
+  <div class="pnum"><span>32</span></div>
+  <div class="pbody">
+    <header>
+      <h3>LEO&#x27;S DREAM MACHINE</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">17 elements</span>
+      </div>
+    </header>
+    <p class="scene">A magnificent contraption, clearly built from household objects: a funnel at the
+top, a boiler body made of a laundry basket, a crank wheel from a bicycle, a chimney that
+is a rolled rug, and a chute at the bottom out of which finished dreams are pouring — stars,
+small planets, a fish, one tiny castle. Leo turns the crank. Mia feeds an ordinary pebble
+into the funnel. Waffles and Momo watch the chute. Pip sits on the chimney.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five.</dd></div><div class="row"><dt>Main action</dt><dd>An ordinary pebble goes in; a small world comes out.</dd></div><div class="row"><dt>Environment</dt><dd>The garden shed, doors open, night sky beyond.</dd></div><div class="row"><dt>Composition</dt><dd>The machine is a vertical stack from y 260 to y 900, centre-left. Output
+chute exits to the lower right where the dream objects spread across the floor. Leo at the
+crank on the left, Mia on a step stool feeding the funnel at y≈420.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Boiler body, funnel, crank wheel, six dream objects, shed doors.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Pipes, three bolts, steam puffs, the pebble, step stool,
+Waffles, Momo, Pip, night sky stars.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'>built from primitives per the shape cookbook (<code>rrect</code>, <code>C</code>, <code>P</code>) —
+<code>basket</code> · <code>bicycle</code> (crank wheel) · <code>star</code> · <code>planet_ringed</code> · <code>fish</code> · <code>castle_small</code> ·
+<code>kid_stand</code> · <code>kid_reach</code> · <code>dachshund</code> · <code>cat_sitting</code> · <code>bird_side</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section finale and the book's thematic keystone: the machine takes
+in the ordinary and emits the magical, which is exactly what a child's attention does and
+what every page of Section 1 showed happening without machinery. Leo built the thing the
+book has been describing.</p>
+    <p class="flag"><span>Production flag</span>This is the highest-risk page in the book — a novel multi-part object
+with no single helper behind it. Build it early, not last, so there is room to fall back to
+a simpler machine silhouette if two attempts do not read cleanly.</p>
+  </div>
+</article>
+</section>
+<section class="sect" data-section="5">
+  <header class="sect-head">
+    <div class="sect-eyebrow">Section 5 · pages 33–40</div>
+    <h2>THE WORLD IS FULL OF WONDER</h2>
+    <div class="sect-blurb"><p><em>Pages 33–40 · home again, and nothing looks the way it did on page 1</em></p>
+<p>No magic is added in this section. Every page is something a child could genuinely walk
+past this afternoon. That is the entire point: after thirty-two pages of transformation,
+the reader has been taught to do the transforming themselves, and the book stops doing it
+for them.</p></div>
+  </header>
+  
+<article class="page-entry" data-section="5" data-tier="Easy" id="page-33">
+  <div class="pnum"><span>33</span></div>
+  <div class="pbody">
+    <header>
+      <h3>MORNING LIGHT ON THE KITCHEN FLOOR</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">9 elements</span>
+      </div>
+    </header>
+    <p class="scene">A rectangle of sunlight lying across the kitchen floor, drawn as a clean
+outlined shape with the window's cross-bars printed inside it. Momo is lying in the middle
+of it with her eyes shut. Waffles has arrived to lie in it too and there is not enough room.
+Mia sits on the floor in the corner of the light with a cup.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Momo, Waffles.</dd></div><div class="row"><dt>Main action</dt><dd>Nothing. Three creatures share a patch of sun.</dd></div><div class="row"><dt>Environment</dt><dd>Kitchen floor, early morning. Table legs, a chair, the window above.</dd></div><div class="row"><dt>Composition</dt><dd>The light patch is a long parallelogram running from the window at upper
+right down to the lower left, y 500–900, and it is the page's main shape. Window at y
+200–480 holds the top. Everyone is at floor level, which makes this the lowest-energy
+composition in the book — intentionally.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>The light patch and its window-bar divisions, Momo, Waffles,
+Mia's cup and pinafore.</dd></div><div class="row"><dt>Secondary details <span class="count">5</span></dt><dd>Table legs, chair, floor tiles as four large squares, the
+window frame, a spoon on the floor.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>window</code> · <code>rrect</code> (light patch) · <code>table</code> · <code>cat_sitting</code> ·
+<code>dachshund</code> · <code>kid_sitting</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The section opens by proving its own claim. A patch of light on the
+floor is the most ordinary thing imaginable, and after thirty-two pages a child looks at
+that outlined rectangle and sees a place you could get into. Nothing is added. The reader
+does the work now.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Easy" id="page-34">
+  <div class="pnum"><span>34</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE LONGEST SHADOWS</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">Late afternoon on the pavement, sun low behind. Mia, Leo and Waffles stand in a
+row, and their shadows stretch enormously across the page towards the reader. The shadows
+are outlined shapes, not solid — and they are not quite doing the same things as their
+owners. Mia's shadow has wings. Leo's shadow is twelve feet tall. Waffles' shadow runs
+right off the bottom of the page.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Waffles, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Standing still and discovering that their shadows have not been.</dd></div><div class="row"><dt>Environment</dt><dd>A pavement, a low wall behind, a hedge, the sun near the horizon.</dd></div><div class="row"><dt>Composition</dt><dd>The three figures stand along y≈600 at reduced scale, which is unusual —
+they are small because the shadows are the subject. Shadow shapes sweep from their feet
+down to the bottom edge. The low wall and sun hold y 380–600.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Three shadow shapes (large, simple, satisfying), the wall, the
+hedge, sun disc.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Pip and Pip's shadow, pavement cracks, two birds, a lamppost,
+the hedge's scalloped top.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>kid_stand</code> ×2 · <code>dachshund</code> · <code>bird_side</code> · <code>sun</code> · <code>fence_picket</code> ·
+<code>smooth_path</code> (shadow silhouettes) · <code>lamppost</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The book's cleverest observation, and it requires no fantasy at all —
+shadows really do get long and strange at five o'clock. A child who has read this page
+will check their own shadow on the way home, which is the highest thing a book like this
+can achieve.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Medium" id="page-35">
+  <div class="pnum"><span>35</span></div>
+  <div class="pbody">
+    <header>
+      <h3>A WHOLE WORLD IN THE GARDEN BED</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">14 elements</span>
+      </div>
+    </header>
+    <p class="scene">Ground level, extremely close up. Mia lies on her front with her chin on her
+hands, face to face with a snail on a stem. Around her the grass is a forest — blades
+taller than she is from this angle — and it is busy: a beetle, a ladybird, a line of ants
+carrying a leaf, a butterfly landing, a worm surfacing. Momo's enormous face looms in at
+the edge of the frame, interested.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Momo, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Looking closely at something small.</dd></div><div class="row"><dt>Environment</dt><dd>A garden bed at insect scale. Soil, stems, one fallen leaf as a bridge.</dd></div><div class="row"><dt>Composition</dt><dd>Grass blades rise the full height of the art band, y 200–940, framing the
+page in vertical strokes. Mia lies along the bottom third. The snail is at eye level with
+her at y≈760 and is the focal subject despite being one of the smaller objects — everything
+in the composition points at it.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Six grass blades, the snail's shell, the leaf, butterfly wings,
+Momo's face.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Beetle, ladybird, five ants, worm, three soil clods, a flower
+head, Pip's feet at the very top edge, a dew drop.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>garden_strip</code> · <code>snail</code> · <code>butterfly</code> · <code>leaf</code> · <code>grass_tuft</code> ×6 ·
+<code>cat_sitting</code> (face only, cropped at frame edge) · <code>kid_sitting</code> (prone adaptation) ·
+<code>flower</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The counterpart to page 22's scale joke, played straight instead of for
+laughs. It also settles the section's argument: you do not need a different world, you need
+to get closer to this one.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Easy" id="page-36">
+  <div class="pnum"><span>36</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE BIRD WHO SANG OUR SONG</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span>
+      </div>
+    </header>
+    <p class="scene">An open window seen from inside. Pip is on the branch just outside, mid-song,
+and the notes are coming in through the window and drifting around the room — over the
+lamp, past the picture frame, along the curtain. Mia stands on tiptoe at the sill with both
+elbows on it, listening. Momo is on the sill beside her, doing the same thing, which is
+unusual restraint on her part.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Momo, Pip.</dd></div><div class="row"><dt>Main action</dt><dd>Listening.</dd></div><div class="row"><dt>Environment</dt><dd>A bedroom in the morning, window open onto a tree.</dd></div><div class="row"><dt>Composition</dt><dd>Window fills y 220–720 at centre-right — the branch and Pip sit inside its
+frame, so the bird is small but unmissable. Music notes trail diagonally into the room from
+upper right to lower left, which is the only thing moving on the page. Lamp and picture
+frame hold the left side.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Window frame and panes, curtain, the tree branch, lamp shade,
+Mia's pinafore.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Nine music notes at two sizes, Pip, Momo, picture frame, three
+leaves, the sill, a plant pot.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>window</code> · <code>bird_side</code> · <code>music_note</code> ×9 · <code>floor_lamp</code> ·
+<code>wall_picture</code> · <code>cat_sitting</code> · <code>kid_stand</code> · <code>potted_plant</code> · <code>leaf</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The only page in the book about sound, saved until almost the end so it
+lands as something new rather than as a gimmick. It also pays off Pip's music-note motif
+from the character bible — thirty-five pages of setup for one small moment.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Medium" id="page-37">
+  <div class="pnum"><span>37</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE PUDDLE, AGAIN</h3>
+      <div class="meta">
+        <span class="chip tier medium">Medium</span>
+        <span class="chip">11 elements</span>
+      </div>
+    </header>
+    <p class="scene">The same street corner as page 1. The same puddle, the same lamppost, the same
+two rooftops. The rain has stopped properly now and the puddle is only reflecting the sky
+and the lamppost — no waves, no whale. Except right out in the middle of it, small and
+clear, the little sailboat is still there. Mia stands looking at it with her hands behind
+her back. Leo is crouched beside her again. Waffles is standing in it again. Momo has come
+too, this time. Pip is on the same lamppost arm.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five.</dd></div><div class="row"><dt>Main action</dt><dd>Looking at the puddle a second time, on purpose.</dd></div><div class="row"><dt>Environment</dt><dd>Identical to page 1 — this only works if it is genuinely the same drawing
+underneath, with elements removed rather than a new scene.</dd></div><div class="row"><dt>Composition</dt><dd>Deliberately near-identical to page 1: same puddle oval on the ground line,
+same lamppost carrying the top, Mia left and Leo right. The differences are all subtractive
+— the waves and whale are gone, the reflection lines are calm — plus one addition, Momo, in
+the space where the whale used to be.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Puddle interior (now mostly empty — the largest single open area
+in the book), the reflected lamppost, the sailboat, Mia's pinafore, both rooftops.</dd></div><div class="row"><dt>Secondary details <span class="count">6</span></dt><dd>Reflection lines, the lamppost, Momo, Pip, two clouds, Waffles'
+ripples.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'>identical call stack to page 1, minus <code>waves</code> and <code>whale_spout</code>, plus
+<code>cat_sitting</code> — this page should be built by copying page 1's builder function and deleting
+from it.</dd></div></dl>
+    <p class="why"><span>Why it belongs</span>This is the page the whole book exists to arrive at. A child who colored
+page 1 forty minutes or four weeks ago will recognise it immediately, spot the boat, and
+understand the entire argument of the book without a single word of explanation. The empty
+space where the whale was is not a loss — it is the room left for them.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Challenging" id="page-38">
+  <div class="pnum"><span>38</span></div>
+  <div class="pbody">
+    <header>
+      <h3>FIND THE WONDER</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">18 elements</span><span class="chip act">activity</span>
+      </div>
+    </header>
+    <p class="scene">A busy ordinary street on a Saturday — shops, a bus stop, a market stall, a dog
+walker, a cyclist, a pigeon on a bin, a child with a balloon. Nothing magical anywhere. But
+hidden in it: eleven things from earlier in the book. The sailboat is in a shop window. The
+lion is on a poster. A fairy door is at the base of a lamppost. The dream machine's funnel
+is in a skip.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five, plus a street's worth of extras.</dd></div><div class="row"><dt>Main action</dt><dd>Searching. A checklist runs down one side of the page in small colorable
+boxes.</dd></div><div class="row"><dt>Environment</dt><dd>A town street, fully populated. The book's densest page.</dd></div><div class="row"><dt>Composition</dt><dd>Street kit with the road band across the lower third, shopfronts along
+y 400–800, skyline above. The checklist column occupies the right-hand 110 px as a series
+of small framed icons, kept clear of the art so it never competes.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>Three shopfronts, the bus, the market awning, the balloon,
+eleven checklist icons.</dd></div><div class="row"><dt>Secondary details <span class="count">8</span></dt><dd>Bus stop, bin and pigeon, cyclist, lamppost with fairy door,
+skip, poster, shop window, the cast dispersed through the crowd.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>scene_street</code> · <code>skyline</code> · <code>school_bus</code> · <code>lamppost</code> · <code>fairy_door</code> ·
+<code>sailboat</code> · <code>lion</code> (poster) · <code>balloon</code> · <code>bicycle</code> · <code>bird_side</code> · full cast helpers</dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The find-the-thing page, positioned near the end where it works as a
+review of everything the child has colored. It rewards having done the book in order and
+gives the whole thing a second life — this is the page a child returns to alone.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Easy" id="page-39">
+  <div class="pnum"><span>39</span></div>
+  <div class="pbody">
+    <header>
+      <h3>DRAW WHAT YOU SEE</h3>
+      <div class="meta">
+        <span class="chip tier easy">Easy</span>
+        <span class="chip">10 elements</span><span class="chip act">activity</span>
+      </div>
+    </header>
+    <p class="scene">Mia and Leo hold up a large empty picture frame between them, turned to face the
+reader. Everything inside the frame is blank paper. Around the outside: their own gallery —
+six small framed drawings hung on the wall behind them, each one a thumbnail of a page from
+earlier in the book. Momo sits on the frame's lower edge, which is exactly the sort of thing
+that would ruin a real painting.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>Mia, Leo, Momo.</dd></div><div class="row"><dt>Main action</dt><dd>They hand the frame to the reader.</dd></div><div class="row"><dt>Environment</dt><dd>A wall of a room, hung as a gallery.</dd></div><div class="row"><dt>Composition</dt><dd>The big frame is centred, y 260–780, and its interior is the single
+largest blank area in the book. The six small frames sit around it in a loose ring. Mia and
+Leo stand at either side, hands on the frame, heads above its top edge.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>The big frame's moulding, six small framed pictures, both
+children, Momo.</dd></div><div class="row"><dt>Secondary details <span class="count">5</span></dt><dd>Picture hooks, wall line, a stool, pencil on the floor, one
+crooked frame.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>finish_page</code> (frame mechanics) · <code>wall_picture</code> ×6 · <code>kid_stand</code> ×2 ·
+<code>cat_sitting</code> · <code>rrect</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The last invitation and the biggest one. Every earlier activity page
+asked the child to finish something; this one asks them to start something. Putting the six
+thumbnails around it means a child who does not know what to draw has six reminders in
+their peripheral vision.</p>
+    
+  </div>
+</article>
+<article class="page-entry" data-section="5" data-tier="Challenging" id="page-40">
+  <div class="pnum"><span>40</span></div>
+  <div class="pbody">
+    <header>
+      <h3>THE WORLD THROUGH MY EYES</h3>
+      <div class="meta">
+        <span class="chip tier challenging">Challenging</span>
+        <span class="chip">16 elements</span>
+      </div>
+    </header>
+    <p class="scene">A great soap bubble floating in the middle of the page, and inside its curve, in
+clean small line work, the whole book: the puddle-ocean, the box-rocket, the blanket castle,
+the cloud playground, the staircase of stars, the tea party table. Below it the entire cast
+stands together looking up — Mia and Leo side by side, Waffles stretched across in front of
+them, Momo on Leo's shoulder for once in full view, Pip on the very top of the bubble where
+he should not be able to balance. The book's title runs along the bottom in large hollow
+letters for coloring.</p>
+    <dl class="fields"><div class="row"><dt>Characters</dt><dd>All five.</dd></div><div class="row"><dt>Main action</dt><dd>Looking up at everything they have seen.</dd></div><div class="row"><dt>Environment</dt><dd>Open, undefined, warm. A suggestion of ground, a few sparkles, nothing
+that places it anywhere in particular.</dd></div><div class="row"><dt>Composition</dt><dd>Bubble centred at y 200–640, its interior scenes drawn at small scale with
+plenty of white between them so they read as memories rather than clutter. Cast along
+y 640–900. Title letters across y 920–990 in outline form, sized so a child can color
+inside them.</dd></div><div class="row"><dt>Major coloring areas</dt><dd>The bubble's rim and highlight, six mini-scenes inside it, the
+title letters, all five characters.</dd></div><div class="row"><dt>Secondary details <span class="count">7</span></dt><dd>Sparkles, a second smaller bubble, ground suggestion, Momo,
+Pip, two drifting stars, the Wonder Star hidden in its hardest position of the book.</dd></div><div class="row"><dt>Builds from</dt><dd class='builds'><code>C</code> (bubble) · miniature calls to the page 1, 2, 3, 26, 24 and 29
+builders at reduced scale · <code>otext</code> / <code>word</code> (title letters) · <code>kid_stand</code> ×2 ·
+<code>dachshund</code> · <code>cat_sitting</code> · <code>bird_side</code> · <code>sparkle</code></dd></div></dl>
+    <p class="why"><span>Why it belongs</span>The closing image has to do two jobs: hold the whole book in one frame,
+and leave the reader on the outside of it looking in, the same way they were on page 1. The
+bubble does both — everything is in there, it is beautiful, and it is about to pop, which
+is exactly what childhood attention is like and exactly why this book was worth making.</p>
+    
+  </div>
+</article>
+</section>
+  </div>
+
+  <div id="characters" class="panel prose" hidden><h2>The Little Minds Collection — Book 1: <em>The World Through My Eyes</em></h2>
+<p>These trait vectors are <strong>canon</strong>. Copy them verbatim into every future book in the
+collection. The skill's whole consistency guarantee rests on the cast being parametric:
+the same trait dict always renders the same character, so there is no identity drift
+between page 3 and page 37, or between Book 1 and Book 6.</p>
+<p><strong>The one rule that breaks everything if ignored:</strong> never override an outfit, hair style
+or motif on a single page "just for this scene." A child recognises a character by
+silhouette, not by face. Change the silhouette and it is a different child.</p>
+<hr />
+<h2>Why these five read as five different characters</h2>
+<p>At coloring-book line weight there is no room for facial nuance — every face is two eyes,
+a nose tick and a smile. Distinguishability comes from five channels, and each cast
+member is separated on at least three of them:</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Mia</th>
+<th>Leo</th>
+<th>Waffles</th>
+<th>Momo</th>
+<th>Pip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Silhouette</td>
+<td>round bob</td>
+<td>spiky tousled</td>
+<td>very long, very low</td>
+<td>compact, tall tail</td>
+<td>tiny, egg-shaped</td>
+</tr>
+<tr>
+<td>Head accessory</td>
+<td>—</td>
+<td>glasses</td>
+<td>long floppy ears</td>
+<td>upright ears</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Skin/coat mark</td>
+<td>freckles</td>
+<td>—</td>
+<td>saddle patch</td>
+<td>chunky stripes</td>
+<td>chest speckle</td>
+</tr>
+<tr>
+<td>Motif</td>
+<td>star</td>
+<td>paper plane</td>
+<td>bone tag</td>
+<td>—</td>
+<td>music note</td>
+</tr>
+<tr>
+<td>Relative size</td>
+<td>1.00</td>
+<td>0.96</td>
+<td>0.55 h</td>
+<td>0.38 h</td>
+<td>0.14 h</td>
+</tr>
+</tbody>
+</table>
+<p>Mia and Leo differ on all five. That is deliberate — they share most pages, and two kids
+who read as "the same kid twice" is the single most common failure in this genre.</p>
+<hr />
+<h2>MIA — the one who sees it first</h2>
+<pre><code class="language-python">MIA = {
+    &quot;name&quot;: &quot;Mia&quot;,
+    &quot;age&quot;: 6,
+    &quot;hair&quot;: &quot;bob_bangs&quot;,        # charlib.HAIR_STYLES — round helmet silhouette
+    &quot;glasses&quot;: False,
+    &quot;freckles&quot;: True,
+    &quot;motif&quot;: &quot;star&quot;,
+    &quot;outfit&quot;: &quot;pinafore&quot;,       # pinafore dress over a short-sleeve tee, ankle socks, sneakers
+    &quot;scale&quot;: 1.00,              # ~196px tall at s=1.0; rendered 1.25-1.40 on scene pages
+    &quot;face_r&quot;: 38,
+}
+</code></pre>
+<p><strong>Role in the book.</strong> Mia is the lens. She is the one who looks at the puddle and sees the
+ocean, and on almost every page she is either <em>pointing at</em> the magical thing or <em>inside</em>
+it. When a page needs someone to direct the reader's eye, it is Mia's arm that does it.</p>
+<p><strong>Locked features.</strong> Bob with blunt bangs — a clean closed curve, the most legible hair
+silhouette in the library at small scale. Freckles (three per cheek, asymmetric heights;
+two marks at matching heights read as a second pair of eyes). Pinafore: one outline, one
+hem line, one pocket. Nothing more — the guide is unambiguous that stacking straps, bows
+and trim on a small chest reads as clutter every time.</p>
+<p><strong>Her star.</strong> The star is her signature and it does double duty: it sits on her pinafore
+pocket, and one loose star is hidden somewhere on all 40 pages (see the Visual Bible,
+"The Wonder Star"). That turns a passive coloring book into something a child re-opens.</p>
+<p><strong>Stock poses.</strong> <code>kid_point</code> (her default — she indicates), <code>kid_stand(pose="wave")</code>,
+<code>kid_reach</code>, <code>kid_sitting</code>, <code>kid_in_bed</code>. Avoid running poses for her; Leo owns motion.</p>
+<p><strong>Expression register.</strong> Wide open eyes, small closed smile, chin slightly up. Never
+open-mouth shouting — at this line weight an open mouth becomes a black hole.</p>
+<hr />
+<h2>LEO — the one who builds it</h2>
+<pre><code class="language-python">LEO = {
+    &quot;name&quot;: &quot;Leo&quot;,
+    &quot;age&quot;: 5,
+    &quot;hair&quot;: &quot;tousled&quot;,          # irregular spikes — maximum contrast against Mia's bob
+    &quot;glasses&quot;: True,            # one of the only two sanctioned face-crossing shapes
+    &quot;freckles&quot;: False,
+    &quot;motif&quot;: &quot;paper_plane&quot;,     # NEW tiny motif, 3 straight lines — see build notes
+    &quot;outfit&quot;: &quot;tee_shorts&quot;,     # tee with paper-plane badge, shorts with one big pocket, high-tops
+    &quot;scale&quot;: 0.96,              # a touch shorter than Mia, consistently
+    &quot;face_r&quot;: 38,
+}
+</code></pre>
+<p><strong>Role in the book.</strong> Leo is the engineer of the imagination. Mia sees the rocket; Leo
+tapes fins onto the box. He is the one holding, climbing, launching, crawling into and
+steering things. His pages carry the book's physical comedy.</p>
+<p><strong>Locked features.</strong> Tousled hair — four or five uneven spikes, never symmetrical. Round
+glasses, drawn as two circles plus a bridge, sitting over the eyes; glasses are allowed to
+cross the face interior, and nothing else is. No freckles: with glasses plus spiky hair he
+is already three channels clear of Mia, and a fourth mark would only crowd the face.</p>
+<p><strong>Stock poses.</strong> <code>kid_run</code>, <code>kid_jump</code>, <code>kid_carry</code>, <code>kid_stand(pose="down")</code>, <code>kid_reach</code>.
+He is almost never standing still with both arms down.</p>
+<p><strong>Expression register.</strong> Grinning open-ish smile, eyebrows up. Leo is allowed one eyebrow
+higher than the other — it is his whole comic personality in two strokes.</p>
+<hr />
+<h2>WAFFLES — the dachshund, and the book's running joke</h2>
+<pre><code class="language-python">WAFFLES = {
+    &quot;name&quot;: &quot;Waffles&quot;,
+    &quot;species&quot;: &quot;dog&quot;,
+    &quot;breed_variant&quot;: &quot;dachshund&quot;,   # long body, short legs — NEW variant, see build notes
+    &quot;coat&quot;: &quot;patch&quot;,                # one large saddle patch across the back
+    &quot;collar&quot;: True,                 # collar + round tag with a bone mark
+    &quot;ears&quot;: &quot;long_floppy&quot;,
+    &quot;scale_len&quot;: 1.60,              # 1.6x the length of the stock dog silhouette
+    &quot;scale_h&quot;:   0.70,              # 0.7x the height
+}
+</code></pre>
+<p><strong>Role in the book.</strong> Waffles is a length gag with legs. Because he is absurdly long and
+absurdly low, he can be <em>used</em> as scenery: a bridge across a "river," a log at the
+campfire, a measuring stick, a draught-excluder under the blanket castle. He appears on 26
+of 40 pages and is doing something slightly wrong on most of them.</p>
+<p><strong>Locked features.</strong> The saddle patch is his main colorable area and its edge is fixed —
+it starts behind the shoulder and ends before the hips, so a child can color the body one
+colour and the patch another. Collar sits high on the neck with the tag hanging clear of
+the chest line. Tongue out on high-energy pages, in on calm pages.</p>
+<p><strong>Build note (first production task).</strong> The library ships <code>dog</code>, <code>dog_sit</code> and <code>dog_sleep</code>
+but no dachshund. Waffles will be a parametric stretch of the existing dog geometry — body
+elongated, leg length reduced, ears lengthened — added as <code>dachshund()</code> and frozen. This is
+the collection's single most important asset: every future book depends on it rendering
+identically.</p>
+<hr />
+<h2>MOMO — the kitten who is never fully visible</h2>
+<pre><code class="language-python">MOMO = {
+    &quot;name&quot;: &quot;Momo&quot;,
+    &quot;species&quot;: &quot;cat&quot;,
+    &quot;coat&quot;: &quot;stripes&quot;,     # 3 chunky tail bands + 2 back bands — big enough to color
+    &quot;collar&quot;: False,       # deliberately bare: contrast against Waffles' collar
+    &quot;tail&quot;: &quot;upright_curl&quot;,
+    &quot;scale&quot;: 0.80,         # kitten, not cat — smaller with a proportionally bigger head
+}
+</code></pre>
+<p><strong>Role in the book.</strong> Momo is the hide-and-seek thread. On page after page she is <em>partly</em>
+behind something: peeking out of the box, under the blanket, around a doorframe, inside a
+boot. Children find her before they find anything else on the page, and that small win is
+what makes a 5-year-old turn to the next one.</p>
+<p><strong>Locked features.</strong> Stripes are chunky and few — three on the tail, two across the back,
+each wide enough to color. Thin tabby striping would collapse into uncolorable slivers at
+print size. Upright tail with a curl at the tip is her recognition mark from any angle.</p>
+<p><strong>Occlusion is a feature, not a compromise.</strong> The skill's own escalation ladder recommends
+placing a figure behind an object when the full pose is hard. Momo's entire character
+design is that recommendation turned into a personality.</p>
+<hr />
+<h2>PIP — the sparrow who points</h2>
+<pre><code class="language-python">PIP = {
+    &quot;name&quot;: &quot;Pip&quot;,
+    &quot;species&quot;: &quot;bird&quot;,
+    &quot;base&quot;: &quot;bird_side&quot;,     # perched side-view: egg body, round head, up-cocked tail
+    &quot;chest&quot;: &quot;speckle&quot;,      # 3 asymmetric chest dots
+    &quot;wing_bar&quot;: True,        # one wing line — never two at equal height
+    &quot;scale&quot;: 0.55,
+}
+</code></pre>
+<p><strong>Role in the book.</strong> Pip is the smallest cast member and the book's compositional tool.
+Wherever Pip is looking, the reader looks. On busy pages he sits on the thing that matters;
+on calm pages he is the only element in the upper third, holding the top of the composition
+so the page does not bottom-crowd.</p>
+<p><strong>Locked features.</strong> Always perched or in mid-flap, never standing on the ground like a
+pigeon. Three chest speckles at deliberately uneven heights. His motif is the music note —
+he is the only character who makes sound in the book, which pays off on page 36.</p>
+<hr />
+<h2>Cast rules that carry across the whole collection</h2>
+<ol>
+<li><strong>Outfits never change.</strong> Not for weather, not for bedtime. Pyjama pages (25, 27) are
+   the single sanctioned exception, and the pyjama pattern is itself locked: stars for
+   Mia, stripes for Leo.</li>
+<li><strong>Height order is always Mia &gt; Leo &gt; Waffles &gt; Momo &gt; Pip.</strong> A child reading two books
+   a year apart should be able to line them up.</li>
+<li><strong>Mia leads with her right hand, Leo with his left.</strong> A small thing that makes
+   two-figure pages compose without the arms colliding.</li>
+<li><strong>Waffles is always to the left of Momo</strong> when both are on a page. Consistency in
+   staging reads as intention.</li>
+<li><strong>Pip is never on the ground.</strong> Branch, shoulder, rail, roof, handle.</li>
+<li><strong>Every page contains at least two cast members.</strong> A page with a single object and no
+   character does not belong in this book.</li>
+</ol>
+<hr />
+<h2>Appearance count across the 40 pages</h2>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Pages</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mia</td>
+<td>35</td>
+<td>absent only from 4, 17, 18, 19, 22</td>
+</tr>
+<tr>
+<td>Leo</td>
+<td>24</td>
+<td>absent from the quieter Mia-led pages; he is the book's motion</td>
+</tr>
+<tr>
+<td>Waffles</td>
+<td>25</td>
+<td>the physical-comedy engine</td>
+</tr>
+<tr>
+<td>Momo</td>
+<td>23</td>
+<td>always partly hidden</td>
+</tr>
+<tr>
+<td>Pip</td>
+<td>25</td>
+<td>eye-line pointer, usually upper third</td>
+</tr>
+<tr>
+<td>All five together</td>
+<td>8</td>
+<td>pages 8, 14, 24, 29, 32, 37, 38, 40 — plus the cover</td>
+</tr>
+</tbody>
+</table></div>
+  <div id="visual" class="panel prose" hidden><h2>The Little Minds Collection — house style for every book in the series</h2>
+<p>Everything here is expressed in the units the drawing library actually uses, so the rules
+can be checked by arithmetic instead of argued about by eye. The page canvas is
+<strong>850 × 1100 px at 100 px/inch</strong>, which is exactly the 8.5 × 11 inch trim. One millimetre
+at print size is 3.94 px. Keep that conversion in mind — most of the rules below are
+really print-legibility rules wearing pixel clothes.</p>
+<hr />
+<h2>1. Line system</h2>
+<p>This is the part a parent notices without being able to name it. A page where every line
+is the same weight reads flat and confusing; a child cannot tell what is an edge and what
+is a detail.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Stroke (px)</th>
+<th>At print</th>
+<th>Used for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Outer silhouette</td>
+<td>5.5</td>
+<td>1.4 mm / 4.0 pt</td>
+<td>the outline a child colors up to</td>
+</tr>
+<tr>
+<td>Interior structure</td>
+<td>4.0</td>
+<td>1.0 mm / 2.9 pt</td>
+<td>limbs, windows, major divisions</td>
+</tr>
+<tr>
+<td>Detail</td>
+<td>3.0</td>
+<td>0.8 mm / 2.2 pt</td>
+<td>freckles, stripes, seams, spokes</td>
+</tr>
+<tr>
+<td>Absolute minimum</td>
+<td>2.0</td>
+<td>0.5 mm / 1.4 pt</td>
+<td>never thinner, at any zoom</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>weight contrast is the message</strong>: outer heavy, interior medium, detail light. That
+ratio is what tells a four-year-old "this is the boundary, that is a decoration."</p>
+<p><strong>Pure black, one value.</strong> No gray fill, no gradient, no cross-hatching, no stipple
+shading. Where the library offers <code>hatch_region</code> for texture, this book does not use it —
+the brief bans it and it is the fastest way to make a page look unfinished-but-busy.</p>
+<hr />
+<h2>2. Colorable-area floor</h2>
+<p>The reason most cheap coloring books frustrate children is that they are full of areas
+smaller than a crayon tip.</p>
+<ul>
+<li><strong>No enclosed region smaller than 3 mm = 12 px</strong> in either direction.</li>
+<li><strong>No two near-parallel lines closer than 4 mm = 16 px</strong> — the gap between them becomes
+  an uncolorable sliver.</li>
+<li>Verify with <code>charlib.qa_page(svg)</code>, which labels enclosed regions and counts slivers.
+  This is a gate, not a suggestion.</li>
+</ul>
+<p>Practical consequence: Momo gets five fat stripes, not fifteen thin ones. Waffles gets one
+saddle patch, not spots. Roof shingles, brick courses and fabric patterns are drawn as a
+few large units or not at all.</p>
+<hr />
+<h2>3. Page anatomy</h2>
+<pre><code>y    0 ┌──────────────────────────────┐
+      │   [ trim edge ]               │
+   50 │  ┌────────────────────────┐   │  ← decorative border, 0.5in inset
+      │  │                        │   │
+  102 │  │      PAGE TITLE        │   │  ← title baseline, 42px caps
+      │  │                        │   │
+  150 │  │                        │   │  ┐
+      │  │       ART BAND         │   │  │ scene lives here
+      │  │                        │   │  │
+  950 │  │                        │   │  ┘
+      │  │                        │   │
+ 1038 │  │   (caption, if used)   │   │
+      │  └────────────────────────┘   │
+ 1100 └──────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>Title</strong> at y≈102, one short line, always present. It is what a parent reads aloud.</li>
+<li><strong>Art band</strong> y 150–950. Every stroke stays ≥12 px inside the border rect.</li>
+<li><strong>Captions</strong>: this book uses <strong>titles only, no sentence captions</strong>. A caption band would
+  eat 100 px of art on a page whose whole job is a big simple picture. (Flagged as
+  Decision 3 — reversible if you want narration.)</li>
+</ul>
+<h3>Vertical span — the rule every model breaks</h3>
+<p>The connected scene mass must run from <strong>y ≤ 450 down to y ≥ 900</strong> — at least 55% of the
+page height. Not measured from a sun in the corner and a cloud near the title: isolated sky
+tokens are explicitly excluded. If the connected mass of figures, structures and trees does
+not reach y≈450, the fix is to <strong>add a midground anchor</strong> (a tree, a building, a hill), not
+to sprinkle more sky decoration.</p>
+<p>This is the single most common way a page ends up looking like the artist gave up: figures
+huddled along the bottom edge with a vast empty sky above them.</p>
+<hr />
+<h2>4. Three-layer composition recipe</h2>
+<p>Every scene page is built in this order:</p>
+<ol>
+<li><strong>Background</strong> — a scene kit (<code>scene_meadow</code>, <code>scene_street</code>, <code>scene_beach</code>,
+   <code>scene_space</code>, <code>scene_farm</code>) or a hand-built room. Ground line at y≈940 for land,
+   900 for beach, 930 for the lunar surface.</li>
+<li><strong>Midground</strong> — anchors at y 750–930, drawn smaller to read as distant.</li>
+<li><strong>Foreground</strong> — characters at scale 1.25–1.40, standing on the declared ground line.
+   Main figures run <strong>240–300 px tall</strong>, which is 22–27% of page height each; scale 1.0
+   reads as a distant figure and leaves the page feeling empty.</li>
+</ol>
+<p>Rotate the kit <code>variant</code> between pages so two meadow pages don't repeat the same layout,
+but keep one variant family per setting across the book so it still reads as one world.</p>
+<hr />
+<h2>5. Composition rules for this book specifically</h2>
+<ul>
+<li><strong>One focal subject per page.</strong> The page must look finished if a child colors only the
+  subject and ignores everything else.</li>
+<li><strong>3–7 secondary elements</strong>, per the brief. Counted as: anything with its own closed
+  outline that a child could color separately.</li>
+<li><strong>≥30% of the art band stays white.</strong> Negative space is what makes a page feel calm
+  enough to start.</li>
+<li><strong>Nothing important within 0.75 in (75 px) of the gutter edge.</strong> Bound pages curve, and
+  a face that disappears into the spine is a returned book.</li>
+<li><strong>Face clearance is numeric</strong>: no prop or held object with its center within 1.3 × face
+  radius of any face center. At face_r 38 that is a 49 px exclusion circle. Heads are drawn
+  last with a white fill, so anything inside that circle is silently erased at render time.</li>
+<li><strong>Hands hold things at |x| ≥ 1.5 × r from the head center</strong>, and every hand circle must
+  overlap the arm line it belongs to. A 2 px gap reads as a floating bubble.</li>
+<li><strong>Eye-line direction</strong>: on every page at least one character looks at the focal subject.
+  Pip usually does this job.</li>
+</ul>
+<hr />
+<h2>6. Faces — the anti-eerie checklist</h2>
+<p>Cute goes wrong in this genre faster than anything else, and it goes wrong the same five
+ways every time.</p>
+<ul>
+<li>Both eyes exactly the same size, both solid dots, both on the same horizontal.</li>
+<li>Face radius ≥ 34 px (we use 38). Below that, trait features crowd into mush.</li>
+<li><strong>No stroke ever crosses the face interior</strong> except glasses. An accessory edge that
+  passes over the face gets read <em>as</em> a facial feature — a hat brim becomes a frown, a
+  scarf edge becomes a grin.</li>
+<li>Mouth is a small arc, roughly 0.3 × face radius wide. Never a wide open oval.</li>
+<li>No eyelashes, no blush circles, no nostrils. Those are the Sanrio tells, and the brief
+  explicitly asks us away from that neighbourhood.</li>
+<li>Eyebrows optional and thick when used — Leo's asymmetric pair is the only regular use.</li>
+</ul>
+<hr />
+<h2>7. What this book is not allowed to look like</h2>
+<p>The brief's ban list, restated as things the renderer must never emit:</p>
+<p>no gray fill · no gradients · no cross-hatching · no stipple · no fine pattern fills ·
+no realistic anatomy or musculature · no background clutter competing with the subject ·
+no tiny enclosed spaces · no art within 12 px of the border · no character silhouette
+resembling an existing licensed property.</p>
+<p>On that last one: the cast is built from generic geometric primitives — circles, arcs,
+rounded rectangles — driven by a trait vector. There is no reference image anywhere in the
+pipeline, which is precisely why this approach is safe for commercial publication.</p>
+<hr />
+<h2>8. Difficulty tiers and pacing</h2>
+<p>Difficulty is defined by countable things, not vibes.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Elements</th>
+<th>Subject size</th>
+<th>Smallest region</th>
+<th>Typical page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Easy</strong> (4–5 yr)</td>
+<td>6–9</td>
+<td>45–60% of art band</td>
+<td>≥ 20 px</td>
+<td>one big object, open ground</td>
+</tr>
+<tr>
+<td><strong>Medium</strong> (5–6 yr)</td>
+<td>10–13</td>
+<td>35–45%</td>
+<td>≥ 16 px</td>
+<td>figure + setting + props</td>
+</tr>
+<tr>
+<td><strong>Challenging</strong> (6–7 yr)</td>
+<td>14–18</td>
+<td>30–40%</td>
+<td>≥ 12 px</td>
+<td>full scene, several characters</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pacing rule: never three consecutive pages in the same tier</strong>, and never three
+consecutive Challenging pages at all. A child who hits four dense pages in a row closes the
+book. The storyboard's difficulty column is sequenced deliberately — the distribution is
+17 Easy, 16 Medium, 7 Challenging, and the Challenging pages are spread as section
+closers.</p>
+<hr />
+<h2>9. The Wonder Star</h2>
+<p>One small five-point star is hidden on every one of the 40 pages — in a cloud, a leaf
+pattern, a rug, a puddle reflection. Never in the same place twice, never larger than
+30 px, never overlapping a face.</p>
+<p>It costs almost nothing to implement (the <code>star</code> motif at small scale) and it changes what
+the book is: not 40 pages to color once, but a page a child returns to. It is also the
+single most useful line on the back cover.</p>
+<p>Page 1 teaches the game with a star that is easy to spot. Page 40 hides it hardest.</p>
+<hr />
+<h2>10. Print specification (KDP paperback, US)</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trim</td>
+<td>8.5 × 11 in</td>
+</tr>
+<tr>
+<td>Bleed</td>
+<td><strong>None</strong> — art stops inside the border, no edge-to-edge printing</td>
+</tr>
+<tr>
+<td>Outside/top/bottom margin</td>
+<td>0.5 in (50 px) — professional standard, not the 0.375 minimum</td>
+</tr>
+<tr>
+<td>Gutter margin</td>
+<td>0.625 in (62 px), nothing identity-critical inside 0.75 in</td>
+</tr>
+<tr>
+<td>Interior</td>
+<td>Grayscale, flattened single PDF, vector line art</td>
+</tr>
+<tr>
+<td>Effective resolution</td>
+<td>Vector — no rasterization at any stage</td>
+</tr>
+<tr>
+<td>Paper</td>
+<td>White (recommended over cream for line art)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interior page count.</strong> Forty art pages printed single-sided with a blank verso behind
+each is 80 leaves' worth of interior, plus front matter. KDP prints both sides of every
+sheet, so the blanks must be built into the PDF deliberately — they are what stops marker
+bleed-through from ruining the next picture. Target <strong>84 or 88 interior pages</strong> including
+title page, "this book belongs to" page, and a closing page, which also keeps the count a
+multiple of 4.</p>
+<p>That decision changes the spine width, and therefore the cover wrap, so it needs settling
+before cover work begins.</p>
+<hr />
+<h2>11. File and build conventions</h2>
+<pre><code>books/world-through-my-eyes/
+  make_book.py            # BUILDERS list, one function per page
+  lib_ext.py              # dachshund(), paper_plane() — the two new helpers
+  pages/                  # NN-section-slug.svg  +  matching .png
+  qa/                     # render_tiles output for review
+  World-Through-My-Eyes-Interior.pdf
+</code></pre>
+<p>Page files are numbered <code>01</code>–<code>40</code> with a section slug, so partial rebuilds work:
+<code>python make_book.py 17</code> rebuilds only page 17. Every page is deterministic — no random
+seeds anywhere, so a rebuild two months from now is byte-identical.</p>
+<p><strong>Gate before any page is considered done:</strong>
+1. <code>python -m lib.validate pages/*.svg</code> — exits nonzero on any HIGH finding.
+2. <code>charlib.qa_page()</code> — region floor and sliver count.
+3. Visual read of every page PNG.
+4. Tile QA on the pages that had findings.</p></div>
+  <div id="summary" class="panel prose wide" hidden><h1>PRODUCTION SUMMARY</h1>
+<h2>Difficulty distribution and pacing</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Pages</th>
+<th>Easy</th>
+<th>Medium</th>
+<th>Challenging</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 · Ordinary Things Become Magical</td>
+<td>1–8</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2 · Little Adventures</td>
+<td>9–16</td>
+<td>4</td>
+<td>4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3 · What If Animals Could…</td>
+<td>17–24</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4 · Dream Worlds</td>
+<td>25–32</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5 · The World Is Full of Wonder</td>
+<td>33–40</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>40</strong></td>
+<td><strong>17</strong></td>
+<td><strong>16</strong></td>
+<td><strong>7</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Sequence check: no three consecutive pages share a tier, and the seven Challenging pages
+(8, 23, 24, 27, 32, 38, 40) sit at section closers or near them, where a child arrives with
+momentum. Pages 23 and 24 are the only adjacent Challenging pair, and 24 is followed
+immediately by the quietest page in the book.</p>
+<h2>Cast appearances</h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+<th>16</th>
+<th>17</th>
+<th>18</th>
+<th>19</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mia</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td></td>
+<td>•</td>
+</tr>
+<tr>
+<td>Leo</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+</tr>
+<tr>
+<td>Waffles</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td></td>
+</tr>
+<tr>
+<td>Momo</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Pip</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>21</th>
+<th>22</th>
+<th>23</th>
+<th>24</th>
+<th>25</th>
+<th>26</th>
+<th>27</th>
+<th>28</th>
+<th>29</th>
+<th>30</th>
+<th>31</th>
+<th>32</th>
+<th>33</th>
+<th>34</th>
+<th>35</th>
+<th>36</th>
+<th>37</th>
+<th>38</th>
+<th>39</th>
+<th>40</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mia</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+</tr>
+<tr>
+<td>Leo</td>
+<td></td>
+<td></td>
+<td></td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+</tr>
+<tr>
+<td>Waffles</td>
+<td></td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+</tr>
+<tr>
+<td>Momo</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+</tr>
+<tr>
+<td>Pip</td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td></td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td>•</td>
+<td></td>
+<td>•</td>
+</tr>
+</tbody>
+</table>
+<p>Totals: <strong>Mia 35 · Leo 24 · Waffles 25 · Momo 23 · Pip 25.</strong> All five together on pages
+8, 14, 24, 29, 32, 37, 38, 40.</p>
+<h2>Settings used</h2>
+<p>Indoor 12 · garden and meadow 9 · street and town 5 · sky and space 5 · water 3 ·
+farm 1 · forest 2 · abstract 3. No setting repeats within three pages of itself except the
+page 1 / page 37 callback, which is the point.</p>
+<h2>Build order recommendation</h2>
+<ol>
+<li><strong><code>dachshund()</code> and <code>paper_plane()</code> first</strong> — two new helpers the whole book depends on.
+   Freeze them before any page is drawn.</li>
+<li><strong>Page 1, then page 37</strong> — build the callback pair together while the geometry is
+   identical, not thirty pages apart.</li>
+<li><strong>Page 32 early</strong> — the highest-risk page. If the dream machine does not read after two
+   attempts, there is time to simplify it rather than ship it weak.</li>
+<li>Sections in order after that, with <code>python -m lib.validate</code> after every page and a full
+   <code>lint_book</code> duplicate check once Section 3 is complete.</li>
+</ol></div>
+
+  <footer class="foot">
+    <span>Drafted with the <code>coloring-book</code> skill · charlib helper set</span>
+    <span>Awaiting approval before artwork production</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".panel"));
+  tabs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      tabs.forEach(function (x) { x.setAttribute("aria-selected", String(x === t)); });
+      panels.forEach(function (p) { p.hidden = p.id !== t.dataset.panel; });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  var sectionFilter = null, tierFilter = null;
+  var sBtns = Array.prototype.slice.call(document.querySelectorAll("[data-filter-section]"));
+  var tBtns = Array.prototype.slice.call(document.querySelectorAll("[data-filter-tier]"));
+
+  function apply() {
+    document.querySelectorAll(".page-entry").forEach(function (e) {
+      var okS = !sectionFilter || e.dataset.section === sectionFilter;
+      var okT = !tierFilter || e.dataset.tier === tierFilter;
+      e.hidden = !(okS && okT);
+    });
+    document.querySelectorAll(".sect").forEach(function (s) {
+      var any = s.querySelector(".page-entry:not([hidden])");
+      s.hidden = !any;
+    });
+    sBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.filterSection === sectionFilter));
+    });
+    tBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.filterTier === tierFilter));
+    });
+  }
+  sBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      sectionFilter = sectionFilter === b.dataset.filterSection ? null : b.dataset.filterSection;
+      apply();
+    });
+  });
+  tBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      tierFilter = tierFilter === b.dataset.filterTier ? null : b.dataset.filterTier;
+      apply();
+    });
+  });
+  document.getElementById("clearf").addEventListener("click", function () {
+    sectionFilter = null; tierFilter = null; apply();
+  });
+
+  document.querySelectorAll(".strip .cell").forEach(function (c) {
+    c.addEventListener("click", function () {
+      sectionFilter = null; tierFilter = null; apply();
+    });
+  });
+})();
+</script>
