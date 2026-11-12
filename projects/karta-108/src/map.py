@@ -60,12 +60,12 @@ def board(cell,gap,f,fs,r):
 # print
 bd=board(600,18,F('Manrope',38),F('Unbounded',50),28);pad=90;top=330
 o=Image.new('RGB',(bd.width+pad*2,bd.height+top+pad),INK);o.paste(bd,(pad,top));d=ImageDraw.Draw(o)
-d.text((pad,95),'КАРТА',font=F('Unbounded',150),fill=(255,255,255));d.text((pad+d.textlength('КАРТА ',font=F('Unbounded',150)),95),'108',font=F('Unbounded',150),fill=FUX)
+d.text((pad,95),'КАРТА',font=F('Unbounded',150),fill=(255,255,255));d.text((pad+d.textlength('КАРТА ',font=F('Unbounded',150)),95),'I.8',font=F('Unbounded',150),fill=FUX)
 sub='жизнь на максималках';sf=F('Manrope',46);d.text((o.width-pad-d.textlength(sub,font=sf),165),sub,font=sf,fill=MUTE)
-o.save('Карта 108.jpg',quality=92)
+o.save('Карта I.8.jpg',quality=92)
 # phone
 P=Image.new('RGB',(1290,2796),INK);bd=board(286,10,F('Manrope',20),F('Unbounded',26),16)
 x=(1290-bd.width)//2;y=640;P.paste(bd,(x,y));d=ImageDraw.Draw(P)
-d.text((x,y-120),'108',font=F('Unbounded',90),fill=FUX)
+d.text((x,y-120),'I.8',font=F('Unbounded',90),fill=FUX)
 sf=F('Manrope',34);d.text((x+bd.width-d.textlength(sub,font=sf),y-80),sub,font=sf,fill=MUTE)
-P.save('Карта 108 — заставка.jpg',quality=92)
+P.save('Карта I.8 — заставка.jpg',quality=92)

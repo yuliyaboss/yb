@@ -11,6 +11,7 @@ cp assets/photos/bb7ff5b6-image.jpg $B/src.jpg
 cd $B
 python3 map.py          # -> Карта 108.jpg + заставка
 python3 tiles.py        # -> tiles/*.jpg для вкладыша
-node insert.js          # -> Протокол 108 — моя карта (вкладыш).pdf
-cp "Карта 108.jpg" "Карта 108 — заставка.jpg" "Протокол 108 — моя карта (вкладыш).pdf" ../output/
+node insert.js          # -> вкладыш (старый)
+node i8.js              # -> I.8 — рабочая тетрадь.pdf + I.8 — дни 1–108.pdf
+cp "Карта I.8.jpg" "Карта I.8 — заставка.jpg" I.8*.pdf ../output/
 echo "Готово: output/"

@@ -1,7 +1,7 @@
 const {chromium}=require(require('child_process').execSync('npm root -g').toString().trim()+'/playwright');
 const fs=require('fs'),path=require('path');const D=__dirname;
 const img=k=>'data:image/jpeg;base64,'+fs.readFileSync(path.join(D,'tiles',k+'.jpg')).toString('base64');
-const map='data:image/jpeg;base64,'+fs.readFileSync(path.join(D,'Карта 108.jpg')).toString('base64');
+const map='data:image/jpeg;base64,'+fs.readFileSync(path.join(D,'Карта I.8.jpg')).toString('base64');
 const L=n=>Array.from({length:n},()=>'<div class="ln"></div>').join('');
 const S=[
  {t:'Реализация',k:[['zen','Блог-магнит · 1 mln'],['app','IT · приложения'],['rabbit','freegen · игрушка']],z:['lueur','LUEUR Maison']},
